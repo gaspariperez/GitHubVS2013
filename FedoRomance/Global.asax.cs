@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Http;
 
 namespace FedoRomance.Web
 {
@@ -9,6 +10,7 @@ namespace FedoRomance.Web
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }
 }
