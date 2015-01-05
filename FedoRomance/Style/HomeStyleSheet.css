@@ -99,7 +99,7 @@
 /*----------------LAYOUT----------------*/
 
 .Action {
-    background: black;
+    background: red;
     color: white;
     font-family: arial;
     font-size: 20px;
@@ -114,7 +114,7 @@
 }
 
 .navbar-header {
-    background: ;
+    background: pink;
     padding-top: 10px;
     height: 32px;
     width: 700px;
