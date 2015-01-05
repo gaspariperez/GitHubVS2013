@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Log in";
+}
+
+
+@model FedoRomance.Web.Models.HomeLogInModel
+
+@using (Html.BeginForm("LogIn", "Home"))
+{
+
+    @Html.DisplayNameFor(x => x.Username)
+    @Html.TextBoxFor(x => x.Username)
+    @Html.ValidationMessageFor(x => x.Username)
+
+    <br/>
+
+    @Html.DisplayNameFor(x => x.Password)
+    @Html.PasswordFor(x => x.Password)
+    @Html.ValidationMessageFor(x => x.Password)
+
+    <br/>
+
+    <input type="submit" value="Logga in"/>
+}

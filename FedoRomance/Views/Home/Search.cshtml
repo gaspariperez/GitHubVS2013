@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+}
+
+@model FedoRomance.Web.Models.EditViewModel
+@{
+    <div>
+        <h2>Search</h2>
+        <p>
+            First name: <input class="nameTextField" /> <br />
+            Last name: <input class="nameTextField" />
+        </p>
+
+
+        <p>
+            Age:
+            @Html.DropDownList("Age", null, "Min")
+            @Html.DropDownList("Age", null, "Max")
+        </p>
+
+        <p>
+            Length:
+            @Html.DropDownList("Length", null, "Min")
+            @Html.DropDownList("Length", null, "Max")
+        </p>
+
+        <p>
+            Weight:
+            @Html.DropDownList("Weight", null, "Min")
+            @Html.DropDownList("Weight", null, "Max")
+        </p>
+
+        <p>
+            Region:
+            @Html.DropDownList("Region", null, "Select region")
+        </p>
+
+        <p>
+
+
+            Gender:
+            @Html.CheckBox("Male") Male
+            @Html.CheckBox("Female") Female
+        </p>
+
+        <p>
+            Hobbies:
+            <select class="hobbyComboBox"></select>
+            <select class="hobbyComboBox"></select>
+            <select class="hobbyComboBox"></select>
+        </p>
+
+        <p>
+            <input type="submit" value="Search" />
+        </p>
+    </div>
+
+}

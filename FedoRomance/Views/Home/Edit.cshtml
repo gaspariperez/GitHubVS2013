@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+@model FedoRomance.Web.Models.EditViewModel
+@{
+    <div>
+        <p>
+            First name: <input class="nameTextField" /> <br />
+            Last name: <input class="nameTextField" />
+        </p>
+    
+    
+        <p>
+            Age:
+            @Html.DropDownList("Age", null, "Select age")
+        </p>
+
+        <p>
+            Length (cm):
+            @Html.DropDownList("Length", null, "Select length")
+        </p>
+        
+        <p>
+            Weight (kg):
+            @Html.DropDownList("Weight", null, "Select weight")
+        </p>
+
+        <p>
+            Region:
+            @Html.DropDownList("Region", null, "Select region")
+        </p>
+
+        <p>
+            
+            
+            Gender:
+            @Html.CheckBox("Male") Male
+            @Html.CheckBox("Female") Female
+        </p>
+
+        <p>
+            Hobbies:
+            <select class="hobbyComboBox"></select>
+            <select class="hobbyComboBox"></select>
+            <select class="hobbyComboBox"></select>
+        </p>
+    
+        <p>
+            <input type="checkbox" name="acceptCheckBox" /> Jag är säker på att allt stämmer, let's do this!
+        </p>
+
+        <p>
+            <input type="submit" value="Hodor" />
+        </p>
+    </div>
+    
+}

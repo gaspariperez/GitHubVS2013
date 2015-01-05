@@ -1,0 +1,128 @@
+﻿.container {
+    max-width: 800px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.container
+
+/*------------------------Index------------------------*/
+
+#randomPics {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.randomUserDiv {
+    background-size: 200px 200px;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    float: left;
+    position: relative;
+}
+
+.randomUserInfo {
+    color: white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#randomUser1 {
+    background-image: url("/pictures/randomUser1.jpg");
+}
+
+#randomUser2 {
+    background-image: url('/pictures/randomUser2.jpg');
+}
+
+#randomUser3 {
+    background-image: url('/pictures/randomUser3.jpg');
+}
+
+#randomUser4 {
+    background-image: url('/pictures/randomUser4.jpg');
+}
+
+#randomUser5 {
+    background-image: url('/pictures/randomUser5.jpg');
+}
+
+#randomUser6 {
+    background-image: url('/pictures/randomUser6.jpg');
+}
+
+
+
+
+
+/*------------------------PROFILE------------------------*/
+
+#friendsDiv {
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+
+.randomFriendDiv {
+    background-size: 100px 100px;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    float: left;
+}
+
+#randomFriend1 {
+    background-image: url("/pictures/randomUser1.jpg");
+}
+#randomFriend2 {
+    background-image: url("/pictures/randomUser2.jpg");
+}
+#randomFriend3 {
+    background-image: url("/pictures/randomUser3.jpg");
+}
+#randomFriend4 {
+    background-image: url("/pictures/randomUser4.jpg");
+}
+#randomFriend5 {
+    background-image: url("/pictures/randomUser5.jpg");
+}
+#randomFriend6 {
+    background-image: url("/pictures/randomUser6.jpg");
+}
+
+#profileWallDiv {
+    display: inline-block;
+}
+
+
+
+/*----------------LAYOUT----------------*/
+
+.Action {
+    background: black;
+    color: white;
+    font-family: arial;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    float: left;
+
+    
+    
+}
+
+.navbar-header {
+    background: ;
+    padding-top: 10px;
+    height: 32px;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+
+
+
+}
