@@ -11,19 +11,16 @@ namespace FedoRomance.Web.Api
 {
     public class HomeApiController : ApiController
     {
-        public static List<string> Search(string name)
+        public static List<User> Search(string name)
         {
-            using (var user = new Dataentitie   )
+            using (var user = new DatabaseEntities())
             {
-                var result = new List<string>();
+                List<User> result = new List<User>();
                 var search = from r in user.Users
                              where r.Firstname.Contains(name)
-                             select r.ToString();
+                             select r;
 
-                foreach (var item in search)
-                {
-                    result.Add(item);
-                }
+                result = search.ToList();
                 return result;
             }
         }
