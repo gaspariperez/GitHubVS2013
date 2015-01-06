@@ -8,18 +8,25 @@
 
 @using (Html.BeginForm("LogIn", "Home"))
 {
+    <div>
+        <p><h3>Log In</h3></p>
 
+    </div>
+    <div class="DivLogIN">
     @Html.DisplayNameFor(x => x.Username)
+        &nbsp;
     @Html.TextBoxFor(x => x.Username)
     @Html.ValidationMessageFor(x => x.Username)
 
     <br/>
 
     @Html.DisplayNameFor(x => x.Password)
-    @Html.PasswordFor(x => x.Password)
+        &nbsp;
+    @Html.PasswordFor(x => x.Password, new{@class = "PwBox"})
     @Html.ValidationMessageFor(x => x.Password)
 
     <br/>
-
-    <input type="submit" value="Logga in"/>
+    <input type="submit" value="Logga in" id="SubmitBtn"/>
+    
+    </div>
 }
