@@ -13,7 +13,7 @@ namespace FedoRomance.Web.Api
     {
         public static List<string> Search(string name)
         {
-            using (var user = new DatabaseEntities())
+            using (var user = new Dataentitie   )
             {
                 var result = new List<string>();
                 var search = from r in user.Users

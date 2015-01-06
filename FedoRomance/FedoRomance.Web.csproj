@@ -105,9 +105,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Data.mdf" />
-    <Content Include="App_Data\Data_log.ldf">
-      <DependentUpon>Data.mdf</DependentUpon>
+    <Content Include="App_Data\Database.mdf" />
+    <Content Include="App_Data\Database_log.ldf">
+      <DependentUpon>Database.mdf</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
