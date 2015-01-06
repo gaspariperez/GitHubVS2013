@@ -122,6 +122,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EditViewModel.cs" />
+    <Compile Include="Models\HomeApiModel.cs" />
     <Compile Include="Models\HomeLogInModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -141,7 +142,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\HomeApiModel\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FedoRomance.Data\FedoRomance.Data.csproj">
       <Project>{2316ab0c-9242-4adb-a487-c992ebe7b04e}</Project>
