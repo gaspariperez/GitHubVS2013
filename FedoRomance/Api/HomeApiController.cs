@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace FedoRomance.Web.Api
 {
-    public class ApiController : ApiController
+    public class HomeApiController : ApiController
     {
     }
 }
