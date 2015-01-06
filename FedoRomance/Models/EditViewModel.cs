@@ -13,20 +13,11 @@ namespace FedoRomance.Web.Models
         [Display(Name = "Age")]
         public int Age { get; set; }
 
-        [Display(Name = "Length")]
-        public int Length { get; set; }
-
-        [Display(Name = "Weight")]
-        public int Weight { get; set; }
-
         [Display(Name = "Region")]
         public string Region { get; set; }
 
         [Display(Name = "Gender")]
         public string Gender { get; set; }
-
-
-
-
+        
     }
 }

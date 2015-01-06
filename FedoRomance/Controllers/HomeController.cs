@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
 using FedoRomance.Data.Repositories;
+using FedoRomance.Web.Api;
 using FedoRomance.Web.Models;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -114,8 +117,17 @@ namespace FedoRomance.Web.Controllers
         }
 
         public ActionResult Search() {
-
             EditAndSearch();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Search(SearchModel model)
+        {
+            var result = HomeApiController.Search(model.Name);
+
+            ViewBag.Result = result;
+
             return View();
         }
 	}
