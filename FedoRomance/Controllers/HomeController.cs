@@ -126,18 +126,8 @@ namespace FedoRomance.Web.Controllers
         public ActionResult Search(SearchModel model)
         {
             var result = SearchRepository.Search(model.Name);
-
-            var result1 = new List<SelectListItem>();
-
-            foreach (User item in result)
-            {
-                result1.Add(new SelectListItem
-                {
-                    Text = item.Name
-                });
-            }
-
-            ViewBag.Result = result1;
+            
+            ViewBag.Result = result;
 
             return View();
         }
