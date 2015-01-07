@@ -148,6 +148,7 @@
     <Compile Include="Models\EditViewModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\HomeLogInModel.cs" />
+    <Compile Include="Models\ValidationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
