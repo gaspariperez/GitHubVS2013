@@ -5,6 +5,7 @@
 
 
 
+@using FedoRomance.Data
 @model FedoRomance.Web.Models.SearchModel           
 
 @using (Html.BeginForm("Search")) {
@@ -25,8 +26,16 @@
         
         <input type="text" id="resultsTextBox">
         
-        Results: @Html.TextBox("Result")
-        
+        Results:
+
+
+        @if (ViewBag.Result != null)
+        {
+            foreach (User user in ViewBag.Result)
+            {
+                @Html.ListBox(user.Firstname)
+            }
+        }
 
     </div>
 
