@@ -124,7 +124,7 @@ namespace FedoRomance.Web.Controllers
         [HttpPost]
         public ActionResult Search(SearchModel model)
         {
-            var result = HomeApiController.Search(model.Name);
+            var result = SearchRepository.Search(model.Name);
 
             ViewBag.Result = result;
 
