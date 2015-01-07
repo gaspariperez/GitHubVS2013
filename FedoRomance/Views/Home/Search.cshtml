@@ -31,10 +31,7 @@
 
         @if (ViewBag.Result != null)
         {
-            foreach (User user in ViewBag.Result)
-            {
-                @Html.ListBox(user.Firstname)
-            }
+            @Html.ListBox("Result")
         }
 
     </div>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
+using FedoRomance.Data;
 using FedoRomance.Data.Repositories;
 using FedoRomance.Web.Api;
 using FedoRomance.Web.Models;
@@ -126,7 +127,17 @@ namespace FedoRomance.Web.Controllers
         {
             var result = SearchRepository.Search(model.Name);
 
-            ViewBag.Result = result;
+            var result1 = new List<SelectListItem>();
+
+            foreach (User item in result)
+            {
+                result1.Add(new SelectListItem
+                {
+                    Text = item.Name
+                });
+            }
+
+            ViewBag.Result = result1;
 
             return View();
         }

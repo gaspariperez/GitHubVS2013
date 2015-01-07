@@ -14,7 +14,7 @@ namespace FedoRomance.Data.Repositories
             {
                 List<User> result = new List<User>();
                 var search = from r in user.Users
-                             where r.Firstname.Contains(name)
+                             where r.Name.Contains(name)
                              select r;
 
                 result = search.ToList();

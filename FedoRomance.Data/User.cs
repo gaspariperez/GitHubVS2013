@@ -22,12 +22,13 @@ namespace FedoRomance.Data
     
         public int UID { get; set; }
         public string Username { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
+        public string Name { get; set; }
         public int Age { get; set; }
         public int Gender { get; set; }
         public string About { get; set; }
         public string Password { get; set; }
+        public int Visible { get; set; }
+        public int Logged { get; set; }
     
         public virtual ICollection<User> Users1 { get; set; }
         public virtual ICollection<User> Users { get; set; }
