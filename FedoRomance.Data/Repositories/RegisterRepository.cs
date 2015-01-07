@@ -8,6 +8,6 @@ namespace FedoRomance.Data.Repositories
 {
     public class RegisterRepository 
     {
-        class 
+        
     }
 }
