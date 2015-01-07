@@ -3,7 +3,7 @@
     ViewBag.Title = "Search";
 }
 
-
+<link href="/Style/HomeStyleSheet.css" rel="stylesheet" type="text/css" />
 
 @using FedoRomance.Data
 @model FedoRomance.Web.Models.SearchModel           
@@ -24,17 +24,13 @@
             <input type="submit" value="Search" id="searchButton"/>
         </p>
         
-        <input type="text" id="resultsTextBox">
-        
         Results:
+        
+        <br/>
 
-
-        @if (ViewBag.Result != null)
+        @if (ViewData["Result"] != null)
         {
-            foreach (User item in ViewBag.Result)
-            {
-                <p> @item.Name </p>
-            }
+            @Html.ListBox("List", (IEnumerable<SelectListItem>)ViewData["Result"], new {@id="searchResultListBox"})
         }
 
     </div>

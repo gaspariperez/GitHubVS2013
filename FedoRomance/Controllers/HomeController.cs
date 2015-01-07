@@ -125,10 +125,19 @@ namespace FedoRomance.Web.Controllers
         [HttpPost]
         public ActionResult Search(SearchModel model)
         {
-            var result = SearchRepository.Search(model.Name);
-            
-            ViewBag.Result = result;
+            var search = SearchRepository.Search(model.Name);
+            var result = new List<SelectListItem>();
 
+            foreach (User item in search)
+            {
+                result.Add(new SelectListItem
+                {
+                    Text = item.Name
+                });
+            }
+
+            ViewData["Result"] = result;
+                        
             return View();
         }
 	}

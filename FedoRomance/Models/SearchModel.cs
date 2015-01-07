@@ -12,6 +12,5 @@ namespace FedoRomance.Web.Models
         public int Age { get; set; }
         public string Region { get; set; }
         public string Gender { get; set; }
-
     }
 }
