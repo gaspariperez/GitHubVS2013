@@ -13,20 +13,30 @@
 
     </div>
     <div class="DivLogIN">
-    @Html.DisplayNameFor(x => x.Username)
+        @Html.DisplayNameFor(x => x.Username)
         &nbsp;
-    @Html.TextBoxFor(x => x.Username, "Username")
-    @Html.ValidationMessageFor(x => x.Username)
+        @Html.TextBoxFor(x => x.Username, "Username")
+        @Html.ValidationMessageFor(x => x.Username)
 
-    <br/>
+        <br/>
 
-    @Html.DisplayNameFor(x => x.Password)
+        @Html.DisplayNameFor(x => x.Password)
         &nbsp;
-    @Html.PasswordFor(x => x.Password, "Password")
-    @Html.ValidationMessageFor(x => x.Password)
+        @Html.PasswordFor(x => x.Password, "Password")
+        @Html.ValidationMessageFor(x => x.Password)
 
-    <br/>
-    <input type="submit" value="Logga in" id="SubmitBtn"/>
+        <br/>
+        <input type="submit" value="Logga in" id="SubmitBtn"/>
     
+        
+    </div>
+    
+    
+    
+    <div>
+        
+        <p>@Html.ActionLink("Register","Register","Home", null)</p>
+        
+
     </div>
 }

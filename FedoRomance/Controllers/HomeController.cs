@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Web.Helpers;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
@@ -53,6 +54,12 @@ namespace FedoRomance.Web.Controllers
         public ActionResult Friends()
         {
             return View();
+        }
+
+        public ActionResult Register()
+        {
+            return View();
+
         }
 
 
@@ -132,7 +139,12 @@ namespace FedoRomance.Web.Controllers
             return View();
         }
 
-      
-        
+        public class Validation
+        {
+            
+        }
+
+
+
 	}
 }
