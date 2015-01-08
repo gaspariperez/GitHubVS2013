@@ -61,11 +61,9 @@ namespace FedoRomance.Web.Controllers
         //Kanske dela här och skapa en egen controller?
 
         
-        public void EditAndSearch() {
+        public void EditAndRegister() {
             var age = new List<SelectListItem>();
-            var length = new List<SelectListItem>();
-            var weight = new List<SelectListItem>();
-            var region = new List<SelectListItem>();
+            var gender = new List<SelectListItem>();
 
             for (int i = 1; i <= 150; i++) {
                 age.Add(new SelectListItem {
@@ -74,51 +72,44 @@ namespace FedoRomance.Web.Controllers
                 });
             }
 
-            for (int i = 1; i <= 250; i++) {
-                length.Add(new SelectListItem {
-                    Text = i.ToString(),
-                    Value = i.ToString()
-                });
-            }
-
-            for (int i = 1; i <= 500; i++) {
-                weight.Add(new SelectListItem {
-                    Text = i.ToString(),
-                    Value = i.ToString()
-                });
-            }
-
-            string[] regionList = {
-                "Blekinge län", "Dalarnas län", "Gotlands län",
-                "Gävleborgs län", "Hallands län", "Jämtlands län",
-                "Jönköpings län", "Kalmar län", "Kronobergs län",
-                "Norrbottens län", "Skåne Län", "Stockholms län",
-                "Södermanlands län", "Uppsala län", "Värmlands län",
-                "Västerbottens län", "Västernorrlands län", "Västmanlands län",
-                "Västra Götalands län", "Örebro län", "Östergötlands län"
+            string[] genderList =
+            {
+                "Man", "Kvinna"
             };
 
-            foreach (var x in regionList) {
-                region.Add(new SelectListItem {
+            foreach (var x in genderList) {
+                gender.Add(new SelectListItem {
                     Text = x,
                     Value = x
                 });
             }
-            
-            ViewBag.Age = age;
-            ViewBag.Length = length;
-            ViewBag.Weight = weight;
-            ViewBag.Region = region;
+
+            ViewData["Age"] = age;
+            ViewData["Gender"] = gender;
         }
         
         public ActionResult Edit()
         {
-            EditAndSearch();
+            EditAndRegister();
             return View();
         }
 
+        public ActionResult Register() {
+            EditAndRegister();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterModel model)
+        {
+            EditAndRegister();
+            RegisterRepository.Register(model.Name, model.Age, model.Gender, model.About, model.Username, model.Password, model.Visible);
+            return View();
+        }
+
+
+
         public ActionResult Search() {
-            EditAndSearch();
             return View();
         }
 
@@ -140,5 +131,6 @@ namespace FedoRomance.Web.Controllers
                         
             return View();
         }
+
 	}
 }

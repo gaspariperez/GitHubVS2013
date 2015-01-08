@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace FedoRomance.Web.Models
 {
-    public class EditViewModel
+    public class EditModel
     {
         [Display(Name = "Age")]
         public int Age { get; set; }
