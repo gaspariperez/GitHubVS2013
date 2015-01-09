@@ -28,7 +28,6 @@ namespace FedoRomance.Data
         public string Gender { get; set; }
         public string About { get; set; }
         public int Visible { get; set; }
-        public int Logged { get; set; }
     
         public virtual ICollection<User> Users1 { get; set; }
         public virtual ICollection<User> Users { get; set; }

@@ -11,14 +11,21 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                </button>
                 @Html.ActionLink("FedoRomance", "Index", "Home", null, new { @class = "Action" })
                 @Html.ActionLink("Profile", "Profile", "Home", null, new { @class = "Action"})
                 @Html.ActionLink("Search", "Search", "Home", null, new { @class = "Action"})
                 @Html.ActionLink("Edit", "Edit", "Home", null, new { @class = "Action"})
                 @Html.ActionLink("Friends", "Friends", "Home", null, new { @class = "Action"})
-                @Html.ActionLink("LogOut", "LogIn","Home", null, new { @class = "Action"})
-
+                
+                @if (Session["UserAuth"] != null)
+                {
+                    @Html.ActionLink("LogOut", "LogOut","Home", null, new { @class = "Action"})
+                }
+                else if (Session["UserAuth"] == null)
+                {
+                    @Html.ActionLink("LogIn", "LogIn","Home", null, new { @class = "Action"})
+                }
+                
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

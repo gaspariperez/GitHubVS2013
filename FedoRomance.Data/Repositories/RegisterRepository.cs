@@ -22,10 +22,11 @@ namespace FedoRomance.Data.Repositories
                     Username = username,
                     Password = password,
                     Visible = visible,
-                    Logged = 0
                 };
                 
+                user.Users.Add(newUser);
                 user.SaveChanges();
+                
             }
         }
     }

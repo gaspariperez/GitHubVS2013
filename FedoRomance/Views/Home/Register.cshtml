@@ -6,12 +6,15 @@
 
 <link href="/Style/HomeStyleSheet.css" rel="stylesheet" type="text/css" />
 
+@using System.Web.UI.HtmlControls
+@using System.Web.UI.WebControls
 @model FedoRomance.Web.Models.RegisterModel
-@{
+@using (Html.BeginForm("Register")) {
     <div>
         <p>
             Name:
             @Html.TextBoxFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
         </p>
 
         <p>
@@ -32,11 +35,13 @@
         <p>
             Username: 
             @Html.TextBoxFor(model => model.Username)
+            @Html.ValidationMessageFor(model => model.Username)
         </p>
         
         <p>
             Password:
             @Html.TextBoxFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
         </p>
         
         <p>
@@ -44,12 +49,9 @@
         </p>
 
         <p>
-            <input type="checkbox" class="acceptCheckBox" /> Jag är säker på att allt stämmer, let's do this!
+            <input type="submit" value="Registrera!" id="registerButton"/>
         </p>
 
-        <p>
-            <input type="submit" value="Hodor" />
-        </p>
     </div>
 
 }
