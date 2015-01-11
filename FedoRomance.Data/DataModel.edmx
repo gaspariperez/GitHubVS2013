@@ -18,12 +18,12 @@
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Age" Type="int" Nullable="false" />
           <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="About" Type="varchar" MaxLength="50" />
-          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="About" Type="varchar" MaxLength="150" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Visible" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK__Friends__FID__3E1D39E1">
@@ -71,12 +71,12 @@
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Age" Type="Int32" Nullable="false" />
           <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="About" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="About" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Visible" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Users1" Relationship="Self.Friends" FromRole="Users" ToRole="Users1" />
           <NavigationProperty Name="Users" Relationship="Self.Friends" FromRole="Users1" ToRole="Users" />

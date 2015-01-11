@@ -6,14 +6,12 @@
 
 <link href="/Style/HomeStyleSheet.css" rel="stylesheet" type="text/css" />
 
-@using System.Web.UI.HtmlControls
-@using System.Web.UI.WebControls
 @model FedoRomance.Web.Models.RegisterModel
 @using (Html.BeginForm("Register")) {
     <div>
         <p>
             Name:
-            @Html.TextBoxFor(model => model.Name)
+            @Html.TextBoxFor(model => model.Name, new { @maxlength = 50 })
             @Html.ValidationMessageFor(model => model.Name)
         </p>
 
@@ -29,21 +27,26 @@
         
         <p>
             About:
-            @Html.TextBoxFor(model => model.About)
+            @Html.TextAreaFor(model => model.About, new {@class = "aboutTextBox", @maxlength = 150 })
         </p>
         
         <p>
             Username: 
-            @Html.TextBoxFor(model => model.Username)
+            @Html.TextBoxFor(model => model.Username, new { @maxlength = 15 })
             @Html.ValidationMessageFor(model => model.Username)
         </p>
         
         <p>
             Password:
-            @Html.TextBoxFor(model => model.Password)
+            @Html.PasswordFor(model => model.Password, new { @maxlength = 20 })
             @Html.ValidationMessageFor(model => model.Password)
         </p>
-        
+        <p>
+            Confirm password:
+            @Html.PasswordFor(model => model.PasswordMatch, new { @maxlength = 20 })
+            @Html.ValidationMessageFor(model => model.PasswordMatch)
+        </p>
+
         <p>
             @Html.CheckBoxFor(model => model.BoolValue) Jag vill inte vara sökbar.
         </p>

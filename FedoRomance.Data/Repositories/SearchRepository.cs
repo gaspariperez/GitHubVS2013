@@ -11,10 +11,10 @@ namespace FedoRomance.Data.Repositories
     {
         public static List<User> Search(string name)
         {
-            using (var user = new DatabaseEntities())
+            using (var context = new DatabaseEntities())
             {
                 List<User> result = new List<User>();
-                var search = from r in user.Users
+                var search = from r in context.Users
                              where r.Name.Contains(name)
                              select r;
 

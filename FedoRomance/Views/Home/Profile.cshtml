@@ -5,35 +5,46 @@
 
 <link href="/Style/HomeStyleSheet.css" rel="stylesheet" type="text/css" />
 
-<div id="profileInfoDiv">
-    <div>
-        <div id="profilePic"></div>
-        <div id="profileTitle">
-            <h1 id="profileName">NAME</h1>
+@using System.Collections
+@model FedoRomance.Web.Models.ProfileModel
+
+@using (Html.BeginForm("Profile"))
+{
+    <div id="profileInfoDiv">
+        <div>
+            <div id="profilePic"></div> 
+        </div>
+
+        <h2>
+            @Html.DisplayTextFor(model => model.Name)
+        </h2>
+
+        <div id="profileInfo">
+            <h3>Info</h3>
+            <p>
+                Age: @Html.DisplayTextFor(model => model.Age)
+            </p>
+            <p>
+                Gender: @Html.DisplayTextFor(model => model.Gender)
+            </p>
+            <p>
+                About: @Html.DisplayTextFor(model => model.About)
+            </p>
         </div>
     </div>
-    <div id="profileInfo">
-        <h3>Info</h3>
-        <p>Age: </p>
-        <p>Gender: </p>
-        <p>Region: </p>
-        <p>Length: </p>
-        <p>Weight: </p>
-        <p>About: </p>
+
+    <div id="friendsDiv">
+        <h3>Friends</h3>
+        <div id="randomFriend1" class="randomFriendDiv"></div>
+        <div id="randomFriend2" class="randomFriendDiv"></div>
+        <div id="randomFriend3" class="randomFriendDiv"></div>
+        <div id="randomFriend4" class="randomFriendDiv"></div>
+        <div id="randomFriend5" class="randomFriendDiv"></div>
+        <div id="randomFriend6" class="randomFriendDiv"></div>
     </div>
-</div>
 
-<div id="friendsDiv">
-    <h3>Friends</h3>
-    <div id="randomFriend1" class="randomFriendDiv"></div>
-    <div id="randomFriend2" class="randomFriendDiv"></div>
-    <div id="randomFriend3" class="randomFriendDiv"></div>
-    <div id="randomFriend4" class="randomFriendDiv"></div>
-    <div id="randomFriend5" class="randomFriendDiv"></div>
-    <div id="randomFriend6" class="randomFriendDiv"></div>
-</div>
-
-<div id="profileWallDiv">
-    <h3>Wall</h3>
-    <div>Testing text, showing text.</div>
-</div>
+    <div id="profileWallDiv">
+        <h3>Wall</h3>
+        <div>Testing text, showing text.</div>
+    </div>
+}

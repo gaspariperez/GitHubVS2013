@@ -23,19 +23,19 @@ namespace FedoRomance.Web.Controllers
         public ActionResult LogIn() {
             if(Session["UserAuth"] != null)
             {
-                return RedirectToAction("Profile", "Home");
+                return RedirectToAction("Profile", "Home", new { username = Session["UserAuth"].ToString() });
             }
             return View();
         }
 
-        [HttpPost] public ActionResult LogIn(HomeLogInModel model)
+        [HttpPost] public ActionResult LogIn(LogInModel model)
         {
-            var user = UserRepository.TestLogIn(model.Username, model.Password);
+            var user = LogInRepository.LogIn(model.Username, model.Password);
 
             if (user != null) {
                 FormsAuthentication.SetAuthCookie(model.Username, false);
                 Session["UserAuth"] = model.Username;
-                return RedirectToAction("Profile", "Home");
+                return RedirectToAction("Profile", "Home", new { username = Session["UserAuth"].ToString() });
             }
             
             ModelState.AddModelError("", "Login details are wrong.");
@@ -51,17 +51,25 @@ namespace FedoRomance.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
-        public ActionResult Profile() {
-            if (Session["UserAuth"] == null)
-            {
+        public ActionResult Profile(string username) {
+            if (Session["UserAuth"] == null) {
                 return RedirectToAction("LogIn", "Home");
             }
-            return View();
-        }
-        
-        public ActionResult SearchResults() {
-            return View();
+            
+            if (username == null)
+            {
+                username = Session["UserAuth"].ToString();
+            }
+
+            var info = ProfileRepository.GetProfile(username);
+
+            var model = new ProfileModel();
+            model.Name = info.Name;
+            model.Age = info.Age;
+            model.Gender = info.Gender;
+            model.About = info.About;
+
+            return View(model);
         }
 
         public ActionResult Friends()
@@ -71,12 +79,6 @@ namespace FedoRomance.Web.Controllers
             }
             return View();
         }
-
-
-
-
-        //Kanske dela här och skapa en egen controller?
-
         
         public void EditAndRegister() {
             var age = new List<SelectListItem>();
@@ -105,17 +107,43 @@ namespace FedoRomance.Web.Controllers
             ViewData["Gender"] = gender;
         }
         
-        public ActionResult Edit() {
+        public ActionResult Edit(string username) {
             if (Session["UserAuth"] == null) {
                 return RedirectToAction("LogIn", "Home");
             }
+
             EditAndRegister();
-            return View();
+            username = Session["UserAuth"].ToString();
+            var info = EditRepository.GetUser(username);
+
+            ViewData["EditVisible"] = info.Visible;
+
+            var model = new EditModel();
+            model.Name = info.Name;
+            model.Age = info.Age;
+            model.Gender = info.Gender;
+            model.About = info.About;
+            model.Visible = info.Visible;
+            return View(model);
+        }
+
+        [HttpPost] public ActionResult Edit(EditModel model)
+        {
+            EditAndRegister();
+
+            if (!ModelState.IsValid)
+                return View();
+
+            var currentUser = Session["UserAuth"].ToString();
+
+            EditRepository.EditUser(currentUser, model.Name, model.Age, model.Gender, model.About, model.Password, model.Visible);
+
+            return RedirectToAction("Profile", "Home", new { username = Session["UserAuth"].ToString() });
         }
 
         public ActionResult Register() {
             if (Session["UserAuth"] != null) {
-                return RedirectToAction("Profile", "Home");
+                return RedirectToAction("Profile", "Home", new { username = Session["UserAuth"].ToString() });
             }
             EditAndRegister();
             return View();
@@ -131,7 +159,7 @@ namespace FedoRomance.Web.Controllers
             
             RegisterRepository.Register(model.Name, model.Age, model.Gender, model.About, model.Username, model.Password, model.Visible);
 
-            return RedirectToAction("Profile", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
 

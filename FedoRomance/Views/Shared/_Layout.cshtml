@@ -12,7 +12,18 @@
         <div class="container">
             <div class="navbar-header">
                 @Html.ActionLink("FedoRomance", "Index", "Home", null, new { @class = "Action" })
-                @Html.ActionLink("Profile", "Profile", "Home", null, new { @class = "Action"})
+                
+                
+                @if (Session["UserAuth"] != null)
+                {
+                    @Html.ActionLink("Profile", "Profile", "Home", new { username = Session["UserAuth"].ToString() }, new { @class = "Action" })
+                }
+                else if (Session["UserAuth"] == null)
+                {
+                    @Html.ActionLink("Profile", "Profile", "Home", null, new { @class = "Action" })
+                }
+                
+
                 @Html.ActionLink("Search", "Search", "Home", null, new { @class = "Action"})
                 @Html.ActionLink("Edit", "Edit", "Home", null, new { @class = "Action"})
                 @Html.ActionLink("Friends", "Friends", "Home", null, new { @class = "Action"})

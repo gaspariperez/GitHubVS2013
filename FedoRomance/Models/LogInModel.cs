@@ -2,7 +2,7 @@
 
 namespace FedoRomance.Web.Models
 {
-    public class HomeLogInModel
+    public class LogInModel
     {
         [Display(Name = "Användarnamn: ")]
         [Required]

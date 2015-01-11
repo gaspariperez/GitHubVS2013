@@ -21,8 +21,13 @@ namespace FedoRomance.Web.Models
         [Required(ErrorMessage = "Ange ett användarnamn")]
         public string Username { get; set; }
 
+        [Display(Name = "Lösenord")]
         [Required(ErrorMessage = "Ange ett lösenord")]
         public string Password { get; set; }
+
+        [Display(Name = "Lösernordet igen")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Matchar inte!")]
+        public string PasswordMatch { get; set; }
 
         public int Visible { get; set; }
 

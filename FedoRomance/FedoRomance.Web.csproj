@@ -115,9 +115,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EditModel.cs" />
+    <Compile Include="Models\ProfileModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
-    <Compile Include="Models\HomeLogInModel.cs" />
+    <Compile Include="Models\LogInModel.cs" />
     <Compile Include="Models\ValidationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -127,7 +128,6 @@
     <Content Include="Views\Home\LogIn.cshtml" />
     <Content Include="Views\Home\Profile.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
-    <Content Include="Views\Home\SearchResults.cshtml" />
     <Content Include="Views\Home\Friends.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
@@ -139,6 +139,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\ProfileModel\" />
     <Folder Include="Views\RegisterModel\" />
   </ItemGroup>
   <ItemGroup>

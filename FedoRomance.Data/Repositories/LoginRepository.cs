@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 
 namespace FedoRomance.Data.Repositories {
-    public class UserRepository {
+    public class LogInRepository {
 
-        public static User TestLogIn(string username, string password)
+        public static User LogIn(string username, string password)
         {
             using (var context = new DatabaseEntities())
             {
