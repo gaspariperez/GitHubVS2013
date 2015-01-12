@@ -28,6 +28,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -87,6 +88,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Validation.js" />
     <Content Include="Style\HomeStyleSheet.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -98,12 +100,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\HomeApiController.cs" />
-    <Compile Include="App_GlobalResources folder\English.Designer.cs">
+    <Compile Include="App_GlobalResources\English.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>English.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources folder\Swedish.Designer.cs">
+    <Compile Include="App_GlobalResources\Swedish.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Swedish.resx</DependentUpon>
@@ -114,6 +116,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LangPage.cs" />
+    <Compile Include="Models\Language.cs" />
     <Compile Include="Models\EditModel.cs" />
     <Compile Include="Models\ProfileModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
@@ -150,14 +154,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="App_GlobalResources folder\English.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>English.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="App_GlobalResources\English.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>English.designer.cs</LastGenOutput>
+      <CustomToolNamespace>English</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="App_GlobalResources folder\Swedish.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Swedish.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Swedish.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Swedish.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

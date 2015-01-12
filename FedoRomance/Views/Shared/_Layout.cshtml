@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using System.Activities.Expressions
+@using System.Web.Mvc.Html
+@using English
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -16,25 +19,25 @@
                 
                 @if (Session["UserAuth"] != null)
                 {
-                    @Html.ActionLink("Profile", "Profile", "Home", new { username = Session["CurrentUser"].ToString() }, new { @class = "Action" })
+                    @Html.ActionLink(@English.EngProfile, "Profile", "Home", new { username = Session["CurrentUser"].ToString() }, new { @class = "Action" })
                 }
                 else if (Session["UserAuth"] == null)
                 {
-                    @Html.ActionLink("Profile", "Profile", "Home", null, new { @class = "Action" })
+                    @Html.ActionLink(@English.EngProfile, "Profile", "Home", null, new { @class = "Action" })
                 }
                 
 
-                @Html.ActionLink("Search", "Search", "Home", null, new { @class = "Action"})
-                @Html.ActionLink("Edit", "Edit", "Home", null, new { @class = "Action"})
-                @Html.ActionLink("Friends", "Friends", "Home", null, new { @class = "Action"})
+                @Html.ActionLink(@English.EngSearch, "Search", "Home", null, new { @class = "Action"})
+                @Html.ActionLink(@English.EngEdit, "Edit", "Home", null, new { @class = "Action"})
+                @Html.ActionLink(@English.EngFriends, "Friends", "Home", null, new { @class = "Action"})
                 
                 @if (Session["CurrentUser"] != null)
                 {
-                    @Html.ActionLink("LogOut", "LogOut","Home", null, new { @class = "Action"})
+                    @Html.ActionLink(@English.EngLogOut, "LogOut","Home", null, new { @class = "Action", @onclick ="return confirmation()", id = "CONFIRM"})
                 }
                 else if (Session["CurrentUser"] == null)
                 {
-                    @Html.ActionLink("LogIn", "LogIn","Home", null, new { @class = "Action"})
+                    @Html.ActionLink(@English.EngLogIn, "LogIn","Home", null, new { @class = "Action"})
                 }
                 
             </div>
