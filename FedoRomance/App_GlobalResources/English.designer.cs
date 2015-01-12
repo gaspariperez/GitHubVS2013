@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FedoRomance.Web.App_GlobalResources_folder {
+namespace English {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace FedoRomance.Web.App_GlobalResources_folder {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class English {
+    public class English {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace FedoRomance.Web.App_GlobalResources_folder {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FedoRomance.Web.App_GlobalResources_folder.English", typeof(English).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FedoRomance.Web.App_GlobalResources.English", typeof(English).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,12 +51,66 @@ namespace FedoRomance.Web.App_GlobalResources_folder {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string EngEdit {
+            get {
+                return ResourceManager.GetString("EngEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Friends.
+        /// </summary>
+        public static string EngFriends {
+            get {
+                return ResourceManager.GetString("EngFriends", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LogIn.
+        /// </summary>
+        public static string EngLogIn {
+            get {
+                return ResourceManager.GetString("EngLogIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LogOut.
+        /// </summary>
+        public static string EngLogOut {
+            get {
+                return ResourceManager.GetString("EngLogOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        public static string EngProfile {
+            get {
+                return ResourceManager.GetString("EngProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string EngSearch {
+            get {
+                return ResourceManager.GetString("EngSearch", resourceCulture);
             }
         }
     }

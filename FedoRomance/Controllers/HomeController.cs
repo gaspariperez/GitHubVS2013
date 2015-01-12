@@ -47,20 +47,25 @@ namespace FedoRomance.Web.Controllers
         {
             var user = LogInRepository.LogIn(model.Username, model.Password);
 
-            if (user != null) {
+            if (user != null)
+            {
                 FormsAuthentication.SetAuthCookie(model.Username, false);
                 Session["CurrentUser"] = model.Username;
-                return RedirectToAction("Profile", "Home", new { username = Session["CurrentUser"].ToString() });
+                return RedirectToAction("Profile", "Home", new {username = Session["CurrentUser"].ToString()});
             }
-            
-            ModelState.AddModelError("", "Login details are wrong.");
-            Session["CurrentUser"] = null;
+            else
+            {
+                
+                /*ModelState.AddModelError("", "Login details are wrong.");*/
+                Session["CurrentUser"] = null;
 
-            return View();
+                return View();
+            }
         }
 
         public ActionResult LogOut()
         {
+            
             FormsAuthentication.SignOut();
             Session["CurrentUser"] = null;
             return RedirectToAction("Index", "Home");
@@ -226,5 +231,6 @@ namespace FedoRomance.Web.Controllers
             return View();
         }
 
+        
 	}
 }
