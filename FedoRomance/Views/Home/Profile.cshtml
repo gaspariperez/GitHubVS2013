@@ -11,15 +11,14 @@
 @using (Html.BeginForm("Profile"))
 {
     <div id="profileInfoDiv">
-        <div>
-            <div id="profilePic"></div> 
+        <div id="profilePicDiv">
+            <img src="@Url.Content("~/Images/" + Model.Picture)" class="profilePic" />
         </div>
-
-        <h2>
-            @Html.DisplayTextFor(model => model.Name)
-        </h2>
-
+        
         <div id="profileInfo">
+            <h2>
+                @Html.DisplayTextFor(model => model.Name)
+            </h2>
             <h3>Info</h3>
             <p>
                 Age: @Html.DisplayTextFor(model => model.Age)

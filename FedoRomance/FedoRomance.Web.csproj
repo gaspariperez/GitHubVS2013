@@ -139,6 +139,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Images\" />
     <Folder Include="Views\ProfileModel\" />
     <Folder Include="Views\RegisterModel\" />
   </ItemGroup>

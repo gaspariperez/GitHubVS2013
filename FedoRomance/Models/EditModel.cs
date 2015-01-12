@@ -32,6 +32,8 @@ namespace FedoRomance.Web.Models
             get { return Visible == 1; }
             set { Visible = value ? 1 : 0; }
         }
+
+        public string Picture { get; set; }
         
     }
 }

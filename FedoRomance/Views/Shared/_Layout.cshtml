@@ -16,7 +16,7 @@
                 
                 @if (Session["UserAuth"] != null)
                 {
-                    @Html.ActionLink("Profile", "Profile", "Home", new { username = Session["UserAuth"].ToString() }, new { @class = "Action" })
+                    @Html.ActionLink("Profile", "Profile", "Home", new { username = Session["CurrentUser"].ToString() }, new { @class = "Action" })
                 }
                 else if (Session["UserAuth"] == null)
                 {
@@ -28,11 +28,11 @@
                 @Html.ActionLink("Edit", "Edit", "Home", null, new { @class = "Action"})
                 @Html.ActionLink("Friends", "Friends", "Home", null, new { @class = "Action"})
                 
-                @if (Session["UserAuth"] != null)
+                @if (Session["CurrentUser"] != null)
                 {
                     @Html.ActionLink("LogOut", "LogOut","Home", null, new { @class = "Action"})
                 }
-                else if (Session["UserAuth"] == null)
+                else if (Session["CurrentUser"] == null)
                 {
                     @Html.ActionLink("LogIn", "LogIn","Home", null, new { @class = "Action"})
                 }

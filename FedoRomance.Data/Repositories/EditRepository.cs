@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,6 +28,16 @@ namespace FedoRomance.Data.Repositories {
             using (var context = new DatabaseEntities()) {
                 var user = context.Users.FirstOrDefault(x => x.Username.Equals(username));
                 return user;
+            }
+        }
+
+        public static void UploadUserPic(string userToUpdate, string picture)
+        {
+            using (var context = new DatabaseEntities())
+            {
+                var user = context.Users.FirstOrDefault(x => x.Username == userToUpdate);
+                user.Picture = picture;
+                context.SaveChanges();
             }
         }
 

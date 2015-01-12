@@ -8,8 +8,7 @@ namespace FedoRomance.Data.Repositories {
     public class ProfileRepository {
         public static User GetProfile(string username)
         {
-            using (var context = new DatabaseEntities())
-            {
+            using (var context = new DatabaseEntities()) {
                 var user = context.Users.FirstOrDefault(x => x.Username.Equals(username));
                 return user;
             }

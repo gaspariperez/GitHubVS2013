@@ -6,7 +6,7 @@
 <link href="/Style/HomeStyleSheet.css" rel="stylesheet" type="text/css" />
 
 @model FedoRomance.Web.Models.EditModel
-@using (Html.BeginForm("Edit")) {
+@using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { enctype = "multipart/form-data" })) {
     <div>
         <p>
             Name:
@@ -45,6 +45,16 @@
             @Html.CheckBoxFor(model => model.BoolValue) Jag vill inte vara sökbar.
         </p>
         
+        
+        
+        
+        
+        <label for="file">Upload Image:</label>
+        <input type="file" name="file" id="file" />
+        
+        
+        
+
         <p>
             <input type="submit" value="Spara ändringar" id="editButton" />
         </p>

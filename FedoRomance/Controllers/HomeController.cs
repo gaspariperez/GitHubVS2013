@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
@@ -21,9 +23,9 @@ namespace FedoRomance.Web.Controllers
         }
                
         public ActionResult LogIn() {
-            if(Session["UserAuth"] != null)
+            if(Session["CurrentUser"] != null)
             {
-                return RedirectToAction("Profile", "Home", new { username = Session["UserAuth"].ToString() });
+                return RedirectToAction("Profile", "Home", new { username = Session["CurrentUser"].ToString() });
             }
             return View();
         }
@@ -34,12 +36,12 @@ namespace FedoRomance.Web.Controllers
 
             if (user != null) {
                 FormsAuthentication.SetAuthCookie(model.Username, false);
-                Session["UserAuth"] = model.Username;
-                return RedirectToAction("Profile", "Home", new { username = Session["UserAuth"].ToString() });
+                Session["CurrentUser"] = model.Username;
+                return RedirectToAction("Profile", "Home", new { username = Session["CurrentUser"].ToString() });
             }
             
             ModelState.AddModelError("", "Login details are wrong.");
-            Session["UserAuth"] = null;
+            Session["CurrentUser"] = null;
 
             return View();
         }
@@ -47,18 +49,18 @@ namespace FedoRomance.Web.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            Session["UserAuth"] = null;
+            Session["CurrentUser"] = null;
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Profile(string username) {
-            if (Session["UserAuth"] == null) {
+            if (Session["CurrentUser"] == null) {
                 return RedirectToAction("LogIn", "Home");
             }
             
             if (username == null)
             {
-                username = Session["UserAuth"].ToString();
+                username = Session["CurrentUser"].ToString();
             }
 
             var info = ProfileRepository.GetProfile(username);
@@ -68,13 +70,14 @@ namespace FedoRomance.Web.Controllers
             model.Age = info.Age;
             model.Gender = info.Gender;
             model.About = info.About;
+            model.Picture = info.Picture;
 
             return View(model);
         }
 
         public ActionResult Friends()
         {
-            if (Session["UserAuth"] == null) {
+            if (Session["CurrentUser"] == null) {
                 return RedirectToAction("LogIn", "Home");
             }
             return View();
@@ -107,17 +110,15 @@ namespace FedoRomance.Web.Controllers
             ViewData["Gender"] = gender;
         }
         
-        public ActionResult Edit(string username) {
-            if (Session["UserAuth"] == null) {
+        public ActionResult Edit() {
+            if (Session["CurrentUser"] == null) {
                 return RedirectToAction("LogIn", "Home");
             }
 
             EditAndRegister();
-            username = Session["UserAuth"].ToString();
-            var info = EditRepository.GetUser(username);
-
-            ViewData["EditVisible"] = info.Visible;
-
+            var currentUser = Session["CurrentUser"].ToString();
+            var info = EditRepository.GetUser(currentUser);
+            
             var model = new EditModel();
             model.Name = info.Name;
             model.Age = info.Age;
@@ -127,23 +128,50 @@ namespace FedoRomance.Web.Controllers
             return View(model);
         }
 
-        [HttpPost] public ActionResult Edit(EditModel model)
+        [HttpPost] public ActionResult Edit(EditModel model, HttpPostedFileBase file)
         {
             EditAndRegister();
 
             if (!ModelState.IsValid)
                 return View();
 
-            var currentUser = Session["UserAuth"].ToString();
+            var currentUser = Session["CurrentUser"].ToString();
+            var info = EditRepository.GetUser(currentUser);
+            
 
+            if (file != null) {
+                var extension = Path.GetExtension(file.FileName);
+                var picName = currentUser + extension;
+                var folder = Server.MapPath("~/Images");
+                var path = Path.Combine(folder, picName);
+
+                if (info.Picture != null)
+                {
+                    var currentPicName = info.Picture;
+                    var currentPicPath = Path.Combine(folder, currentPicName);
+
+                    if (System.IO.File.Exists(currentPicPath)) {
+                        System.IO.File.Delete(currentPicPath);
+                    }
+                }
+                else if (info.Picture == null)
+                {
+                    if (extension == ".jpeg" || extension == ".jpg" || extension == ".png") {
+                        file.SaveAs(path);
+                        model.Picture = picName;
+                        EditRepository.UploadUserPic(currentUser, picName);
+                    }
+                }
+            }
+            
             EditRepository.EditUser(currentUser, model.Name, model.Age, model.Gender, model.About, model.Password, model.Visible);
 
-            return RedirectToAction("Profile", "Home", new { username = Session["UserAuth"].ToString() });
+            return RedirectToAction("Profile", "Home", new { username = Session["CurrentUser"].ToString() });
         }
 
         public ActionResult Register() {
-            if (Session["UserAuth"] != null) {
-                return RedirectToAction("Profile", "Home", new { username = Session["UserAuth"].ToString() });
+            if (Session["CurrentUser"] != null) {
+                return RedirectToAction("Profile", "Home", new { username = Session["CurrentUser"].ToString() });
             }
             EditAndRegister();
             return View();
@@ -164,7 +192,7 @@ namespace FedoRomance.Web.Controllers
 
 
         public ActionResult Search() {
-            if (Session["UserAuth"] == null) {
+            if (Session["CurrentUser"] == null) {
                 return RedirectToAction("LogIn", "Home");
             }
             return View();
