@@ -18,8 +18,21 @@ namespace FedoRomance.Web.Controllers
     
     public class HomeController : Controller
     {
-        public ActionResult Index() {
-            return View();
+        public ActionResult Index()
+        {
+            var getUser1 = IndexRepository.GetUsers("GasPer");
+            var getUser2 = IndexRepository.GetUsers("antkop");
+            var getUser3 = IndexRepository.GetUsers("HenHo");
+
+            var model = new IndexModel();
+            model.ExampleUser1 = getUser1.Username;
+            model.ExampleUser2 = getUser2.Username;
+            model.ExampleUser3 = getUser3.Username;
+            model.ExampleUserPic1 = getUser1.Picture;
+            model.ExampleUserPic2 = getUser2.Picture;
+            model.ExampleUserPic3 = getUser3.Picture;
+
+            return View(model);
         }
                
         public ActionResult LogIn() {
@@ -201,18 +214,15 @@ namespace FedoRomance.Web.Controllers
         [HttpPost] public ActionResult Search(SearchModel model)
         {
             var search = SearchRepository.Search(model.Name);
-            var result = new List<SelectListItem>();
+            var result = new List<string>();
 
             foreach (User item in search)
             {
-                result.Add(new SelectListItem
-                {
-                    Text = item.Name
-                });
+                result.Add(item.Username);
             }
 
-            ViewData["Result"] = result;
-                        
+            ViewData["SearchResult"] = result;
+            
             return View();
         }
 

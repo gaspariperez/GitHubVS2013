@@ -3,42 +3,32 @@
     ViewBag.Title = "Start";
 }
 
-<link href="/Style/HomeStyleSheet.css" rel="stylesheet" type="text/css" />
+<link href="/Style/HomeStyleSheet.css" rel="stylesheet" type="text/css"></link>
 
-<div id="welcomeDiv">
-    <h1 id="welcomeTitle">FedoRomance</h1>
-    <p id="welcomeDescription">Welcome to FedoRomance, the one and only place for all you gentlemen and m'ladies out there!</p>
-</div>
+@using System.Collections
+@model FedoRomance.Web.Models.IndexModel
+@using (Html.BeginForm("Index", "Home"))
+{
+    <div id="welcomeDiv">
+        <h1 id="welcomeTitle">FedoRomance</h1>
+        <p id="welcomeDescription">Welcome to FedoRomance, the one and only place for all you gentlemen and m'ladies out there!</p>
+    </div>
 
-<div id="randomPics">
-    <div id="randomUser1" class="randomUserDiv">
-        <div class="randomUserInfo">
-            Ralf, 54
-        </div>
+    <div id="exampleUsers">
+            <div class="exampleUser">
+                <a href="@Url.Action("Profile", "Home", new {username = Model.ExampleUser1})">
+                    <img src="@Url.Content("~/Images/" + Model.ExampleUserPic1)" class="examplePic" />
+                </a>
+            </div>
+            <div class="exampleUser">
+                <a href="@Url.Action("Profile", "Home", new {username = Model.ExampleUser2})">
+                    <img src="@Url.Content("~/Images/" + Model.ExampleUserPic2)" class="examplePic" />
+                </a>
+            </div>
+            <div class="exampleUser">
+                <a href="@Url.Action("Profile", "Home", new {username = Model.ExampleUser3})">
+                    <img src="@Url.Content("~/Images/" + Model.ExampleUserPic3)" class="examplePic" />
+                </a>
+            </div>
     </div>
-    <div id="randomUser2" class="randomUserDiv">
-        <div class="randomUserInfo">
-            Sven, 48
-        </div>
-    </div>
-    <div id="randomUser3" class="randomUserDiv">
-        <div class="randomUserInfo">
-            Arne, 62
-        </div>
-    </div>
-    <div id="randomUser4" class="randomUserDiv">
-        <div class="randomUserInfo">
-            Birgitta, 41
-        </div>
-    </div>
-    <div id="randomUser5" class="randomUserDiv">
-        <div class="randomUserInfo">
-            Marie, 55
-        </div>
-    </div>
-    <div id="randomUser6" class="randomUserDiv">
-        <div class="randomUserInfo">
-            Jenny, 39
-        </div>
-    </div>
-</div>
+}

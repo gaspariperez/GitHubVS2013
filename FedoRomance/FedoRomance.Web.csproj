@@ -115,6 +115,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EditModel.cs" />
+    <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Models\ProfileModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
@@ -140,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
+    <Folder Include="Views\IndexModel\" />
     <Folder Include="Views\ProfileModel\" />
     <Folder Include="Views\RegisterModel\" />
   </ItemGroup>

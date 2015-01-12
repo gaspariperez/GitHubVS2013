@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FedoRomance.Data.Repositories {
-    public class ProfileRepository {
-        public static User GetProfile(string username)
+namespace FedoRomance.Data.Repositories
+{
+    public class IndexRepository {
+        public static User GetUsers(string exampleUser)
         {
             using (var context = new DatabaseEntities()) {
-                var user = context.Users.FirstOrDefault(x => x.Username.Equals(username));
+                var user = context.Users.FirstOrDefault(x => x.Username.Equals(exampleUser));
                 return user;
             }
         }

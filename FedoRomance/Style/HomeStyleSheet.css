@@ -5,72 +5,47 @@
     position: relative;
     margin-left: auto;
     margin-right: auto;
+    font-family: arial;
 }
 
 .container
 
 /*------------------------Index------------------------*/
 
-#randomPics {
-}
-
-.randomUserDiv {
-    background-size: 200px 200px;
+.exampleUser {
+    float: left;
+    position: relative;
     width: 200px;
     height: 200px;
-    margin: 10px;
-    float: left;
+    padding: 20px;
+    align-items: center;
+    overflow: hidden;
+
 }
 
-.randomUserInfo {
-    color: white;
-    bottom: 0;
-    right: 0;
+.examplePic {
+    width: 100%;
+    height: auto;
 }
-
-#randomUser1 {
-    background-image: url("/pictures/randomUser1.jpg");
-}
-
-#randomUser2 {
-    background-image: url('/pictures/randomUser2.jpg');
-}
-
-#randomUser3 {
-    background-image: url('/pictures/randomUser3.jpg');
-}
-
-#randomUser4 {
-    background-image: url('/pictures/randomUser4.jpg');
-}
-
-#randomUser5 {
-    background-image: url('/pictures/randomUser5.jpg');
-}
-
-#randomUser6 {
-    background-image: url('/pictures/randomUser6.jpg');
-}
-
 
 
 
 
 /*------------------------PROFILE------------------------*/
 
-#profilePicDiv {
-    min-width: 300px;
-    min-height: 300px;
-    max-width: 300px;
-    max-height: 300px;
+.profilePicDiv {
     float: left;
+    position: relative;
+    width: 250px;
+    height: 250px;
+    padding: 20px;
+    align-items: center;
+    overflow: hidden;
 }
 
 .profilePic {
-    max-width: 300px;
-    max-height: 300px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    height: auto;
 
 }
 
@@ -94,24 +69,6 @@
     float: left;
 }
 
-#randomFriend1 {
-    background-image: url("/pictures/randomUser1.jpg");
-}
-#randomFriend2 {
-    background-image: url("/pictures/randomUser2.jpg");
-}
-#randomFriend3 {
-    background-image: url("/pictures/randomUser3.jpg");
-}
-#randomFriend4 {
-    background-image: url("/pictures/randomUser4.jpg");
-}
-#randomFriend5 {
-    background-image: url("/pictures/randomUser5.jpg");
-}
-#randomFriend6 {
-    background-image: url("/pictures/randomUser6.jpg");
-}
 
 #profileWallDiv {
     display: inline-block;
@@ -131,6 +88,7 @@
     padding-left: 20px;
     padding-right: 20px;
     float: left;
+    text-decoration: none;
 
     
     
@@ -170,9 +128,13 @@
 
 /*------------------------SEARCH------------------------*/
 
-#searchResultListBox {
-    width: 650px;
-    height: 300px;
+.searchResults {
+    font-family: arial;
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 

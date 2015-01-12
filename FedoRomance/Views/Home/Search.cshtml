@@ -5,32 +5,30 @@
 
 <link href="/Style/HomeStyleSheet.css" rel="stylesheet" type="text/css" />
 
+@using System.Collections
 @using FedoRomance.Data
 @model FedoRomance.Web.Models.SearchModel           
 
 @using (Html.BeginForm("Search")) {
     <div>
-        <h2>Search</h2>
-        
         <p>
-            Name:
+            <h2>Search</h2>
             @Html.TextBoxFor(model => model.Name)
-        </p>
-
-
-        
-
-        <p>
-            <input type="submit" value="Search" id="searchButton"/>
+            <input type="submit" value="Search" id="searchButton" />
         </p>
         
         Results:
         
         <br/>
 
-        @if (ViewData["Result"] != null)
+        
+        
+        @if (ViewData["SearchResult"] != null)
         {
-            @Html.ListBox("List", (IEnumerable<SelectListItem>)ViewData["Result"], new {@id="searchResultListBox"})
+            foreach (var item in (IEnumerable<string>) ViewData["SearchResult"])
+            {
+                <p>@Html.ActionLink(item, "Profile", "Home", new { username = item }, new { @class = "searchResults" })</p>
+            }
         }
 
     </div>

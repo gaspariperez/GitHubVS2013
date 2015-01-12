@@ -4,14 +4,12 @@
 }
 
 <link href="/Style/HomeStyleSheet.css" rel="stylesheet" type="text/css" />
-
-@using System.Collections
 @model FedoRomance.Web.Models.ProfileModel
 
 @using (Html.BeginForm("Profile"))
 {
     <div id="profileInfoDiv">
-        <div id="profilePicDiv">
+        <div class="profilePicDiv">
             <img src="@Url.Content("~/Images/" + Model.Picture)" class="profilePic" />
         </div>
         
