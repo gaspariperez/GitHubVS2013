@@ -63,54 +63,54 @@ namespace sprak {
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
-        public static string EngEdit {
+        public static string Edit {
             get {
-                return ResourceManager.GetString("EngEdit", resourceCulture);
+                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Friends.
         /// </summary>
-        public static string EngFriends {
+        public static string Friends {
             get {
-                return ResourceManager.GetString("EngFriends", resourceCulture);
+                return ResourceManager.GetString("Friends", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to LogIn.
         /// </summary>
-        public static string EngLogIn {
+        public static string LogIn {
             get {
-                return ResourceManager.GetString("EngLogIn", resourceCulture);
+                return ResourceManager.GetString("LogIn", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to LogOut.
         /// </summary>
-        public static string EngLogOut {
+        public static string LogOut {
             get {
-                return ResourceManager.GetString("EngLogOut", resourceCulture);
+                return ResourceManager.GetString("LogOut", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Profile.
         /// </summary>
-        public static string EngProfile {
+        public static string Profile {
             get {
-                return ResourceManager.GetString("EngProfile", resourceCulture);
+                return ResourceManager.GetString("Profile", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
-        public static string EngSearch {
+        public static string Search {
             get {
-                return ResourceManager.GetString("EngSearch", resourceCulture);
+                return ResourceManager.GetString("Search", resourceCulture);
             }
         }
     }

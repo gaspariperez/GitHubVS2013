@@ -117,22 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SweLoggaIn" xml:space="preserve">
-    <value>LoggaIn</value>
-  </data>
-  <data name="SweLoggaUt" xml:space="preserve">
-    <value>LoggaUt</value>
-  </data>
-  <data name="SweProfile" xml:space="preserve">
-    <value>Profile</value>
-  </data>
-  <data name="SweRedigera" xml:space="preserve">
+  <data name="Edit" xml:space="preserve">
     <value>Redigera</value>
   </data>
-  <data name="SweSök" xml:space="preserve">
-    <value>Sök</value>
-  </data>
-  <data name="SweVänner" xml:space="preserve">
+  <data name="Friends" xml:space="preserve">
     <value>Vänner</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>LoggaIn</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>LoggaUt</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Sök</value>
   </data>
 </root>
