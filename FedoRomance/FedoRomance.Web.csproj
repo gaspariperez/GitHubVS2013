@@ -144,6 +144,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LangPage.cs" />
+    <Compile Include="Models\FriendsModel.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\EditModel.cs" />
     <Compile Include="Models\IndexModel.cs" />
