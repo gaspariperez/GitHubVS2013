@@ -13,30 +13,36 @@ namespace FedoRomance.Web.Api
 {
     public class HomeApiController : ApiController
     {
-        public static List<Post> GetPosts()
+        public static IEnumerable<Post> GetPosts()
         {
             using (var context = new DatabaseEntities())
             {
-                var posts = new List<Post>();
                 var getPosts = from p in context.Posts
                              orderby p.PostedDate descending
                              select p;
-                posts = getPosts.ToList();
-                return posts;
+                
+                return getPosts.ToList();
             }
         }
 
-        public void Post(string message)
+        public HttpResponseMessage Post(ProfileModel post)
         {
-            using (var context = new DatabaseEntities()) {
-                Post newPost= new Post {
-                    Message = message,
-                    PostedBy = User.Identity.Name,
-                    PostedDate = DateTime.Now.ToString()
-                };
-                context.Posts.Add(newPost);
-                context.SaveChanges();
+
+            if (ModelState.IsValid)
+            {
+                using (var context = new DatabaseEntities())
+                {
+                    Post newPost = new Post
+                    {
+                        Message = post.Message,
+                        PostedBy = User.Identity.Name,
+                        PostedDate = DateTime.Now.ToString()
+                    };
+                    context.Posts.Add(newPost);
+                    context.SaveChanges();
+                }
             }
+            
         }
 
     }
