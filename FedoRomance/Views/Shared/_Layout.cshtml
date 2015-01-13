@@ -8,9 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - FedoRomance</title>
     <link href="/Style/HomeStyleSheet.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -21,25 +19,25 @@
                 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    @Html.ActionLink(Language.Profile, "Profile", "Home", new { username = User.Identity.Name }, new { @class = "Action" })
+                    @Html.ActionLink("Profile", "Profile", "Home", new { username = User.Identity.Name }, new { @class = "Action" })
                 }
                 else if (User.Identity.IsAuthenticated == false)
                 {
-                    @Html.ActionLink(Language.Profile, "Profile", "Home", null, new { @class = "Action" })
+                    @Html.ActionLink("Profile", "Profile", "Home", null, new { @class = "Action" })
                 }
                 
 
-                @Html.ActionLink(Language.Search, "Search", "Home", null, new { @class = "Action"})
-                @Html.ActionLink(Language.Edit, "Edit", "Home", null, new { @class = "Action"})
-                @Html.ActionLink(Language.Friends, "Friends", "Home", null, new { @class = "Action"})
+                @Html.ActionLink("Search", "Search", "Home", null, new { @class = "Action"})
+                @Html.ActionLink("Edit", "Edit", "Home", null, new { @class = "Action"})
+                @Html.ActionLink("Friends", "Friends", "Home", null, new { @class = "Action"})
                 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    @Html.ActionLink(Language.LogOut, "LogOut","Home", null, new { @class = "Action", @onclick ="return confirmation()", id = "CONFIRM"})
+                    @Html.ActionLink("LogOut", "LogOut","Home", null, new { @class = "Action", @onclick ="return confirmation()", id = "CONFIRM"})
                 }
                 else if (User.Identity.IsAuthenticated == false)
                 {
-                    @Html.ActionLink(Language.LogIn, "LogIn","Home", null, new { @class = "Action"})
+                    @Html.ActionLink("LogIn", "LogIn","Home", null, new { @class = "Action"})
                 }
                    
             </div>
@@ -48,6 +46,8 @@
                 </ul>
             </div>
         </div>
+       
+       
     </div>
 
     <div class="container body-content">

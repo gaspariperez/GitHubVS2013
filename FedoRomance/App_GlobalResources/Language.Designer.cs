@@ -61,56 +61,65 @@ namespace sprak {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit.
+        ///   Looks up a localized string similar to About.
         /// </summary>
-        public static string Edit {
+        public static string About {
             get {
-                return ResourceManager.GetString("Edit", resourceCulture);
+                return ResourceManager.GetString("About", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Friends.
+        ///   Looks up a localized string similar to Age.
         /// </summary>
-        public static string Friends {
+        public static string Age {
             get {
-                return ResourceManager.GetString("Friends", resourceCulture);
+                return ResourceManager.GetString("Age", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LogIn.
+        ///   Looks up a localized string similar to Gender.
         /// </summary>
-        public static string LogIn {
+        public static string Gender {
             get {
-                return ResourceManager.GetString("LogIn", resourceCulture);
+                return ResourceManager.GetString("Gender", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LogOut.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
-        public static string LogOut {
+        public static string Name {
             get {
-                return ResourceManager.GetString("LogOut", resourceCulture);
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profile.
+        ///   Looks up a localized string similar to Password.
         /// </summary>
-        public static string Profile {
+        public static string Password {
             get {
-                return ResourceManager.GetString("Profile", resourceCulture);
+                return ResourceManager.GetString("Password", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search.
+        ///   Looks up a localized string similar to PasswordMatch.
         /// </summary>
-        public static string Search {
+        public static string PasswordMatch {
             get {
-                return ResourceManager.GetString("Search", resourceCulture);
+                return ResourceManager.GetString("PasswordMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string Username {
+            get {
+                return ResourceManager.GetString("Username", resourceCulture);
             }
         }
     }
