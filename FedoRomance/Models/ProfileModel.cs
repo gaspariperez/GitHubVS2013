@@ -21,6 +21,5 @@ namespace FedoRomance.Web.Models
         public string Message { get; set; }
         public string PostedBy { get; set; }
         public string PostedDate { get; set; }
-        public string UserWall { get; set; }
 	}
 }

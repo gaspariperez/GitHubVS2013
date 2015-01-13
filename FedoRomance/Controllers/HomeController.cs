@@ -81,6 +81,7 @@ namespace FedoRomance.Web.Controllers
             var info = ProfileRepository.GetProfile(username);
 
             var model = new ProfileModel();
+            model.Username = info.Username;
             model.Name = info.Name;
             model.Age = info.Age;
             model.Gender = info.Gender;

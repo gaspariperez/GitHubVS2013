@@ -17,7 +17,7 @@
           <Key>
             <PropertyRef Name="PostID" />
           </Key>
-          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Message" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="PostedBy" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="PostedDate" Type="varchar" MaxLength="15" Nullable="false" />
@@ -44,11 +44,11 @@ warning 6035: The relationship 'FK__Friends__User1__1B9317B3' has columns that a
 warning 6035: The relationship 'FK__Friends__User2__1C873BEC' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK__Friends__User2__1C873BEC" />-->
         <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__Posts__PostedBy__73852659' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__Posts__PostedBy__73852659" />-->
+warning 6035: The relationship 'FK__Posts__PostedBy__2EA5EC27' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Posts__PostedBy__2EA5EC27" />-->
         <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__Posts__UserWall__74794A92' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__Posts__UserWall__74794A92" />-->
+warning 6035: The relationship 'FK__Posts__UserWall__2F9A1060' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Posts__UserWall__2F9A1060" />-->
         <EntityContainer Name="DatabaseModelStoreContainer">
           <EntitySet Name="Friends" EntityType="Self.Friends" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />

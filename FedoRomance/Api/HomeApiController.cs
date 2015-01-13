@@ -38,7 +38,7 @@ namespace FedoRomance.Web.Api
                             Message = post.Message,
                             PostedBy = User.Identity.Name,
                             PostedDate = DateTime.Now.ToString(),
-                            UserWall = post.UserWall
+                            UserWall = post.Username
                         };
                         context.Posts.Add(newPost);
                         context.SaveChanges();
