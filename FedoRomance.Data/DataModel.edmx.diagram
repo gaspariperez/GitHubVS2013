@@ -7,6 +7,7 @@
       <Diagram DiagramId="179ac5acbd0c46859074f0cff979b283" Name="Diagram1">
         <EntityTypeShape EntityType="DatabaseModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="DatabaseModel.Friends" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DatabaseModel.Post" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

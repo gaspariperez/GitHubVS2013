@@ -10,6 +10,7 @@ namespace FedoRomance.Web.Models
 {
     public class EditModel
     {
+        [Display(Name = "Namn")]
         [Required(ErrorMessage = "Ange ett namn")]
         public string Name { get; set; }
 
@@ -19,12 +20,16 @@ namespace FedoRomance.Web.Models
 
         public string About { get; set; }
 
-        [Display(Name = "Lösenord")]
-        [Required(ErrorMessage = "Ange ett lösenord")]
-        public string Password { get; set; }
-        [Display(Name = "Lösernordet igen")]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Matchar inte!")]
-        public string PasswordMatch { get; set; }
+        [Display(Name = "Nuvarande lösenord")]
+        [Required(ErrorMessage = "Ange ditt nuvarande lösenord")]
+        public string CurrentPassword { get; set; }
+
+        [Display(Name = "Nytt lösenord")]
+        [Required(ErrorMessage = "Ange ett nytt lösenord")]
+        public string NewPassword { get; set; }
+        [Display(Name = "Nya lösernordet igen")]
+        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessage = "Matchar inte!")]
+        public string NewPasswordMatch { get; set; }
 
         public int Visible { get; set; }
 

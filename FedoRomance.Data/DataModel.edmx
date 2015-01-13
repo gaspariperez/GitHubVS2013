@@ -13,6 +13,15 @@
           <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="FID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="PostedBy" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PostedDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UID" />
@@ -53,6 +62,7 @@
         </Association>
         <EntityContainer Name="DatabaseModelStoreContainer">
           <EntitySet Name="Friends" EntityType="Self.Friends" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Friends__FID__3E1D39E1" Association="Self.FK__Friends__FID__3E1D39E1">
             <End Role="Users" EntitySet="Users" />
@@ -93,7 +103,17 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Users1" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Posts" EntityType="DatabaseModel.Post" />
         </EntityContainer>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PostedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PostedDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -123,6 +143,16 @@
               <ScalarProperty Name="UID" ColumnName="UID" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="DatabaseModel.Post">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

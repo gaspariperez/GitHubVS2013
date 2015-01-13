@@ -36,9 +36,9 @@ namespace FedoRomance.Web.Controllers
         }
                
         public ActionResult LogIn() {
-            if(Session["CurrentUser"] != null)
+            if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Profile", "Home", new { username = Session["CurrentUser"].ToString() });
+                return RedirectToAction("Profile", "Home", new { username = User.Identity.Name});
             }
             return View();
         }
@@ -50,14 +50,13 @@ namespace FedoRomance.Web.Controllers
             if (user != null)
             {
                 FormsAuthentication.SetAuthCookie(model.Username, false);
-                Session["CurrentUser"] = model.Username;
-                return RedirectToAction("Profile", "Home", new {username = Session["CurrentUser"].ToString()});
+                return RedirectToAction("Profile", "Home", new {username = User.Identity.Name});
             }
             else
             {
                 
                 /*ModelState.AddModelError("", "Login details are wrong.");*/
-                Session["CurrentUser"] = null;
+                FormsAuthentication.SignOut();
 
                 return View();
             }
@@ -65,20 +64,18 @@ namespace FedoRomance.Web.Controllers
 
         public ActionResult LogOut()
         {
-            
             FormsAuthentication.SignOut();
-            Session["CurrentUser"] = null;
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Profile(string username) {
-            if (Session["CurrentUser"] == null) {
+            if (User.Identity.IsAuthenticated == false) {
                 return RedirectToAction("LogIn", "Home");
             }
             
             if (username == null)
             {
-                username = Session["CurrentUser"].ToString();
+                username = User.Identity.Name;
             }
 
             var info = ProfileRepository.GetProfile(username);
@@ -95,7 +92,7 @@ namespace FedoRomance.Web.Controllers
 
         public ActionResult Friends()
         {
-            if (Session["CurrentUser"] == null) {
+            if (User.Identity.IsAuthenticated == false) {
                 return RedirectToAction("LogIn", "Home");
             }
             return View();
@@ -105,7 +102,7 @@ namespace FedoRomance.Web.Controllers
             var age = new List<SelectListItem>();
             var gender = new List<SelectListItem>();
 
-            for (int i = 1; i <= 150; i++) {
+            for (int i = 18; i <= 150; i++) {
                 age.Add(new SelectListItem {
                     Text = i.ToString(),
                     Value = i.ToString()
@@ -129,12 +126,12 @@ namespace FedoRomance.Web.Controllers
         }
         
         public ActionResult Edit() {
-            if (Session["CurrentUser"] == null) {
+            if (User.Identity.IsAuthenticated == false) {
                 return RedirectToAction("LogIn", "Home");
             }
 
             EditAndRegister();
-            var currentUser = Session["CurrentUser"].ToString();
+            var currentUser = User.Identity.Name;
             var info = EditRepository.GetUser(currentUser);
             
             var model = new EditModel();
@@ -148,48 +145,69 @@ namespace FedoRomance.Web.Controllers
 
         [HttpPost] public ActionResult Edit(EditModel model, HttpPostedFileBase file)
         {
+            if (User.Identity.IsAuthenticated == false) {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             EditAndRegister();
-
-            if (!ModelState.IsValid)
-                return View();
-
-            var currentUser = Session["CurrentUser"].ToString();
+            var currentUser = User.Identity.Name;
             var info = EditRepository.GetUser(currentUser);
-            
 
             if (file != null) {
                 var extension = Path.GetExtension(file.FileName);
-                var picName = currentUser + extension;
-                var folder = Server.MapPath("~/Images");
-                var path = Path.Combine(folder, picName);
 
-                if (info.Picture != null)
+                if (extension == ".jpeg" || extension == ".jpg" || extension == ".png")
                 {
-                    var currentPicName = info.Picture;
-                    var currentPicPath = Path.Combine(folder, currentPicName);
+                    var picName = currentUser + extension;
+                    var folder = Server.MapPath("~/Images");
+                    var path = Path.Combine(folder, picName);
 
-                    if (System.IO.File.Exists(currentPicPath)) {
-                        System.IO.File.Delete(currentPicPath);
+                    if (info.Picture != null) {
+                        var currentPicName = info.Picture;
+                        var currentPicPath = Path.Combine(folder, currentPicName);
+
+                        if (System.IO.File.Exists(currentPicPath)) {
+                            System.IO.File.Delete(currentPicPath);
+                        }
                     }
-                }
-                else if (info.Picture == null)
-                {
-                    if (extension == ".jpeg" || extension == ".jpg" || extension == ".png") {
-                        file.SaveAs(path);
-                        model.Picture = picName;
-                        EditRepository.UploadUserPic(currentUser, picName);
-                    }
+                    file.SaveAs(path);
+                    model.Picture = picName;
+                    EditRepository.UploadUserPic(currentUser, picName);
                 }
             }
             
-            EditRepository.EditUser(currentUser, model.Name, model.Age, model.Gender, model.About, model.Password, model.Visible);
+            EditRepository.EditUser(currentUser, model.Name, model.Age, model.Gender, model.About, model.Visible);
 
-            return RedirectToAction("Profile", "Home", new { username = Session["CurrentUser"].ToString() });
+            return RedirectToAction("Profile", "Home", new { username = User.Identity.Name });
         }
 
+        public ActionResult EditPassword()
+        {
+            if (User.Identity.IsAuthenticated == false) {
+                return RedirectToAction("LogIn", "Home");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditPassword(EditModel model) 
+        {
+            if (User.Identity.IsAuthenticated == false) {
+                return RedirectToAction("LogIn", "Home");
+            }
+
+            var currentUser = User.Identity.Name;
+
+            EditRepository.NewPassword(currentUser, model.CurrentPassword, model.NewPassword);
+
+            return RedirectToAction("Profile", "Home", new { username = User.Identity.Name });
+        }
+
+
+
         public ActionResult Register() {
-            if (Session["CurrentUser"] != null) {
-                return RedirectToAction("Profile", "Home", new { username = Session["CurrentUser"].ToString() });
+            if (User.Identity.IsAuthenticated) {
+                return RedirectToAction("Profile", "Home", new { username = User.Identity.Name });
             }
             EditAndRegister();
             return View();
@@ -200,9 +218,6 @@ namespace FedoRomance.Web.Controllers
         {
             EditAndRegister();
             
-            if (!ModelState.IsValid)
-                return View();
-            
             RegisterRepository.Register(model.Name, model.Age, model.Gender, model.About, model.Username, model.Password, model.Visible);
 
             return RedirectToAction("Index", "Home");
@@ -210,7 +225,7 @@ namespace FedoRomance.Web.Controllers
 
 
         public ActionResult Search() {
-            if (Session["CurrentUser"] == null) {
+            if (User.Identity.IsAuthenticated == false) {
                 return RedirectToAction("LogIn", "Home");
             }
             return View();
@@ -218,12 +233,18 @@ namespace FedoRomance.Web.Controllers
 
         [HttpPost] public ActionResult Search(SearchModel model)
         {
+            if (User.Identity.IsAuthenticated == false) {
+                return RedirectToAction("LogIn", "Home");
+            }
             var search = SearchRepository.Search(model.Name);
             var result = new List<string>();
 
             foreach (User item in search)
             {
-                result.Add(item.Username);
+                if (item.Visible != 1)
+                {
+                    result.Add(item.Username);
+                }
             }
 
             ViewData["SearchResult"] = result;

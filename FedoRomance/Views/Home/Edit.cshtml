@@ -17,11 +17,13 @@
         <p>
             Age:
             @Html.DropDownListFor(model => model.Age, (IEnumerable<SelectListItem>)ViewData["Age"])
+            Current: @Html.DisplayTextFor(model => model.Age)
         </p>
 
         <p>
             Gender:
             @Html.DropDownListFor(model => model.Gender, (IEnumerable<SelectListItem>)ViewData["Gender"])
+            Current: @Html.DisplayTextFor(model => model.Gender)
         </p>
 
         <p>
@@ -29,36 +31,21 @@
             <br/>
             @Html.TextAreaFor(model => model.About, new {@class="aboutTextBox", @maxlength = 150 })
         </p>
-        
-        <p>
-            Password:
-            @Html.PasswordFor(model => model.Password, new { @maxlength = 20 })
-            @Html.ValidationMessageFor(model => model.Password)
-        </p>
-        <p>
-            Confirm password:
-            @Html.PasswordFor(model => model.PasswordMatch, new { @maxlength = 20 })
-            @Html.ValidationMessageFor(model => model.PasswordMatch)
-        </p>
 
         <p>
             @Html.CheckBoxFor(model => model.BoolValue) Jag vill inte vara sökbar.
         </p>
         
-        
-        
-        
-        
         <label for="file">Upload Image:</label>
         <input type="file" name="file" id="file" />
         
-        
-        
-
         <p>
-            <input type="submit" value="Spara ändringar" id="editButton" />
+            <input type="submit" value="Spara ändringar" class="editButton" />
         </p>
-
+        
+        
+        <p>@Html.ActionLink("Someone is hacking me, reset that password!", "EditPassword", "Home",  new { @class = "editPasswordLink" })</p>
+        
     </div>
 
 }

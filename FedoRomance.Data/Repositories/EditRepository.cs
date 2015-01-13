@@ -8,16 +8,18 @@ using System.Threading.Tasks;
 namespace FedoRomance.Data.Repositories {
     public class EditRepository {
 
-        public static void EditUser(string userToUpdate, string name, int age, string gender, string about, string password, int visible)
+        public static void EditUser(string userToUpdate, string name, int age, string gender, string about, int visible)
         {
             using (var context = new DatabaseEntities())
             {
                 var user = context.Users.FirstOrDefault(x => x.Username == userToUpdate);
-                user.Name = name;
+                if (name != null)
+                {
+                    user.Name = name;
+                }
                 user.Age = age;
                 user.Gender = gender;
                 user.About = about;
-                user.Password = password;
                 user.Visible = visible;
                 context.SaveChanges();
             }
@@ -38,6 +40,19 @@ namespace FedoRomance.Data.Repositories {
                 var user = context.Users.FirstOrDefault(x => x.Username == userToUpdate);
                 user.Picture = picture;
                 context.SaveChanges();
+            }
+        }
+
+        public static void NewPassword(string userToUpdate, string currentPassword, string newPassword)
+        {
+            using (var context = new DatabaseEntities()) {
+                var user = context.Users.FirstOrDefault(x => x.Username == userToUpdate);
+
+                if (currentPassword == user.Password && newPassword != null)
+                {
+                    user.Password = newPassword;
+                    context.SaveChanges();
+                }
             }
         }
 
