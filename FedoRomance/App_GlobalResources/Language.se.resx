@@ -117,22 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Edit" xml:space="preserve">
-    <value>Redigera</value>
+  <data name="About" xml:space="preserve">
+    <value>Om</value>
   </data>
-  <data name="Friends" xml:space="preserve">
-    <value>Vänner</value>
+  <data name="Age" xml:space="preserve">
+    <value>Ålder</value>
   </data>
-  <data name="LogIn" xml:space="preserve">
-    <value>LoggaIn</value>
+  <data name="Gender" xml:space="preserve">
+    <value>Kön</value>
   </data>
-  <data name="LogOut" xml:space="preserve">
-    <value>LoggaUt</value>
+  <data name="Name" xml:space="preserve">
+    <value>Namn</value>
   </data>
-  <data name="Profile" xml:space="preserve">
-    <value>Profil</value>
+  <data name="Password" xml:space="preserve">
+    <value>Lösenord</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Sök</value>
+  <data name="PasswordMatch" xml:space="preserve">
+    <value>Matcha lösenordet</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Användarnamn</value>
   </data>
 </root>

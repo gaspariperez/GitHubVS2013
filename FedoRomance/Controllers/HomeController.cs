@@ -253,5 +253,16 @@ namespace FedoRomance.Web.Controllers
         }
 
         
+/*--------------------------language-------------------*/
+        [HttpGet]
+        public ActionResult ChangeCulture(string lang)
+        {
+            var langCookie = new HttpCookie("lang", lang) { HttpOnly = true };
+
+            Response.AppendCookie(langCookie);
+
+            return RedirectToAction("Register", "Home", new { culture = lang });  
+        }
+
 	}
 }

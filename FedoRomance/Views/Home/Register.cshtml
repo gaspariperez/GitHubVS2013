@@ -9,6 +9,10 @@
 @model FedoRomance.Web.Models.RegisterModel
 @using (Html.BeginForm("Register")) {
     <div>
+        <div>
+                @Html.ActionLink("Svenska", "ChangeCulture", "Home", new { lang = "sv" }, null)
+                @Html.ActionLink("English", "ChangeCulture", "Home", new { lang = "en" }, null)
+          </div>
         <p>
             Name:
             @Html.TextBoxFor(model => model.Name, new { @maxlength = 50 })

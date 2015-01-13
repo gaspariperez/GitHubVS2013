@@ -145,7 +145,7 @@
     </Compile>
     <Compile Include="LangPage.cs" />
     <Compile Include="Models\FriendsModel.cs" />
-    <Compile Include="Models\Language.cs" />
+    <Compile Include="Models\LanguageModel.cs" />
     <Compile Include="Models\EditModel.cs" />
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Models\PostModel.cs" />
@@ -195,6 +195,7 @@
     <EmbeddedResource Include="App_GlobalResources\Language.se.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.se.designer.cs</LastGenOutput>
+      <CustomToolNamespace>sprak</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
