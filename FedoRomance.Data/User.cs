@@ -14,23 +14,14 @@ namespace FedoRomance.Data
     
     public partial class User
     {
-        public User()
-        {
-            this.Users1 = new HashSet<User>();
-            this.Users = new HashSet<User>();
-        }
-    
         public int UID { get; set; }
         public string Username { get; set; }
-        public string Password { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
         public string Gender { get; set; }
         public string About { get; set; }
+        public string Password { get; set; }
         public int Visible { get; set; }
         public string Picture { get; set; }
-    
-        public virtual ICollection<User> Users1 { get; set; }
-        public virtual ICollection<User> Users { get; set; }
     }
 }

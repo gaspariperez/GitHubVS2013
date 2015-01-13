@@ -4,23 +4,24 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Friends">
           <Key>
-            <PropertyRef Name="UID" />
-            <PropertyRef Name="FID" />
+            <PropertyRef Name="RelationID" />
           </Key>
-          <Property Name="UID" Type="int" Nullable="false" />
-          <Property Name="FID" Type="int" Nullable="false" />
+          <Property Name="RelationID" Type="int" Nullable="false" />
+          <Property Name="User1" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="User2" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="Posts">
           <Key>
             <PropertyRef Name="PostID" />
           </Key>
           <Property Name="PostID" Type="int" Nullable="false" />
-          <Property Name="Message" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="PostedBy" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="PostedDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="PostedBy" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="PostedDate" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="UserWall" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -36,94 +37,94 @@
           <Property Name="Visible" Type="int" Nullable="false" />
           <Property Name="Picture" Type="varchar" MaxLength="150" />
         </EntityType>
-        <Association Name="FK__Friends__FID__3E1D39E1">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Friends" Type="Self.Friends" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UID" />
-            </Principal>
-            <Dependent Role="Friends">
-              <PropertyRef Name="FID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Friends__UID__3D2915A8">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Friends" Type="Self.Friends" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UID" />
-            </Principal>
-            <Dependent Role="Friends">
-              <PropertyRef Name="UID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__Friends__User1__1B9317B3' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Friends__User1__1B9317B3" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__Friends__User2__1C873BEC' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Friends__User2__1C873BEC" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__Posts__PostedBy__73852659' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Posts__PostedBy__73852659" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__Posts__UserWall__74794A92' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Posts__UserWall__74794A92" />-->
         <EntityContainer Name="DatabaseModelStoreContainer">
           <EntitySet Name="Friends" EntityType="Self.Friends" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Friends__FID__3E1D39E1" Association="Self.FK__Friends__FID__3E1D39E1">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Friends" EntitySet="Friends" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Friends__UID__3D2915A8" Association="Self.FK__Friends__UID__3D2915A8">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Friends" EntitySet="Friends" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="User">
+      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Friend">
           <Key>
-            <PropertyRef Name="UID" />
+            <PropertyRef Name="RelationID" />
           </Key>
-          <Property Name="UID" Type="Int32" Nullable="false" />
-          <Property Name="Username" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Age" Type="Int32" Nullable="false" />
-          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="About" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Visible" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Users1" Relationship="Self.Friends" FromRole="Users" ToRole="Users1" />
-          <NavigationProperty Name="Users" Relationship="Self.Friends" FromRole="Users1" ToRole="Users" />
-          <Property Name="Picture" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="RelationID" Type="Int32" Nullable="false" />
+          <Property Name="User1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <Association Name="Friends">
-          <End Role="Users" Type="Self.User" Multiplicity="*" />
-          <End Role="Users1" Type="Self.User" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="Friends" Association="Self.Friends">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Users1" EntitySet="Users" />
-          </AssociationSet>
-          <EntitySet Name="Posts" EntityType="DatabaseModel.Post" />
-        </EntityContainer>
         <EntityType Name="Post">
           <Key>
             <PropertyRef Name="PostID" />
           </Key>
           <Property Name="PostID" Type="Int32" Nullable="false" />
-          <Property Name="Message" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="PostedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="PostedDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostedBy" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostedDate" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserWall" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="About" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Visible" Type="Int32" Nullable="false" />
+          <Property Name="Picture" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Friends" EntityType="Self.Friend" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+          <EntitySetMapping Name="Friends">
+            <EntityTypeMapping TypeName="DatabaseModel.Friend">
+              <MappingFragment StoreEntitySet="Friends">
+                <ScalarProperty Name="RelationID" ColumnName="RelationID" />
+                <ScalarProperty Name="User1" ColumnName="User1" />
+                <ScalarProperty Name="User2" ColumnName="User2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="DatabaseModel.Post">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="UserWall" ColumnName="UserWall" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DatabaseModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Picture" ColumnName="Picture" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -132,24 +133,7 @@
                 <ScalarProperty Name="About" ColumnName="About" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Visible" ColumnName="Visible" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="Friends" TypeName="DatabaseModel.Friends" StoreEntitySet="Friends">
-            <EndProperty Name="Users">
-              <ScalarProperty Name="UID" ColumnName="FID" />
-            </EndProperty>
-            <EndProperty Name="Users1">
-              <ScalarProperty Name="UID" ColumnName="UID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <EntitySetMapping Name="Posts">
-            <EntityTypeMapping TypeName="DatabaseModel.Post">
-              <MappingFragment StoreEntitySet="Posts">
-                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
-                <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
