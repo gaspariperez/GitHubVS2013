@@ -127,15 +127,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\HomeApiController.cs" />
-    <Compile Include="App_GlobalResources\English.designer.cs">
+    <Compile Include="App_GlobalResources\Language.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>English.resx</DependentUpon>
+      <DependentUpon>Language.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\Swedish.designer.cs">
+    <Compile Include="App_GlobalResources\Language.se.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Swedish.resx</DependentUpon>
+      <DependentUpon>Language.se.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -187,16 +187,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="App_GlobalResources\English.resx">
+    <EmbeddedResource Include="App_GlobalResources\Language.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>English.designer.cs</LastGenOutput>
-      <CustomToolNamespace>English</CustomToolNamespace>
+      <LastGenOutput>Language.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>sprak</CustomToolNamespace>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\Swedish.resx">
+    <Content Include="App_GlobalResources\Language.se.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Swedish.designer.cs</LastGenOutput>
+      <LastGenOutput>Language.se.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <PropertyGroup>
