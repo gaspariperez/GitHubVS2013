@@ -27,23 +27,34 @@ namespace FedoRomance.Web.Api
 
         public HttpResponseMessage Post(ProfileModel post)
         {
-
-            if (ModelState.IsValid)
+            try
             {
-                using (var context = new DatabaseEntities())
+                if (ModelState.IsValid)
                 {
-                    Post newPost = new Post
+                    using (var context = new DatabaseEntities())
                     {
-                        Message = post.Message,
-                        PostedBy = User.Identity.Name,
-                        PostedDate = DateTime.Now.ToString()
-                    };
-                    context.Posts.Add(newPost);
-                    context.SaveChanges();
+                        var newPost = new Post
+                        {
+                            Message = post.Message,
+                            PostedBy = User.Identity.Name,
+                            PostedDate = DateTime.Now.ToString(),
+                            UserWall = post.UserWall
+                        };
+                        context.Posts.Add(newPost);
+                        context.SaveChanges();
+                        return Request.CreateResponse(HttpStatusCode.OK);
+                    }
+                }
+
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, "Invalid Model");
                 }
             }
-            
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
-
     }
 }
