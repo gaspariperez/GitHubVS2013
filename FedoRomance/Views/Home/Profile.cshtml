@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <link href="/Style/HomeStyleSheet.css" rel="stylesheet" type="text/css" />
@@ -14,9 +15,11 @@
         </div>
         
         <div id="profileInfo">
-            <h2>
-                @Html.DisplayTextFor(model => model.Name)
-            </h2>
+            <p>
+                <h2>@Html.DisplayTextFor(model => model.Name)</h2>
+                @Html.DisplayTextFor(model => model.Username)
+            </p>
+            
             <h3>Info</h3>
             <p>
                 Age: @Html.DisplayTextFor(model => model.Age)
@@ -28,20 +31,46 @@
                 About: @Html.DisplayTextFor(model => model.About)
             </p>
         </div>
-    </div>
+        
+        
+        <p>@Html.ActionLink("Send a message to " + @Model.Username, "Post", "Home", new { username = @Model.Username }, new { @class = "postMessageLink" })</p>
 
-    <div id="friendsDiv">
-        <h3>Friends</h3>
-        <div id="randomFriend1" class="randomFriendDiv"></div>
-        <div id="randomFriend2" class="randomFriendDiv"></div>
-        <div id="randomFriend3" class="randomFriendDiv"></div>
-        <div id="randomFriend4" class="randomFriendDiv"></div>
-        <div id="randomFriend5" class="randomFriendDiv"></div>
-        <div id="randomFriend6" class="randomFriendDiv"></div>
-    </div>
+        
+        
+        <form id="post_message">
+            <textarea id="userWallTextBox"></textarea>
+            <input type="submit" id="postMessage" value="Skicka" />
+        </form>
+        
 
-    <div id="profileWallDiv">
-        <h3>Wall</h3>
-        <div>Testing text, showing text.</div>
+        <script>
+        $("#post_message").submit(function (event) {
+            event.preventDefault();
+            var source =
+            {
+                'Message': $("#userWallTextBox").val(),
+                'PostedBy': '@User.Identity.Name',
+                'UserWall': '@Model.Username'
+            }
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "/api/HomeApi/Post",
+                data: source,
+                success: function () {
+                    $("#userWallTextBox").value = "";
+                    document.location.reload();
+                },
+                error: function (error) {
+                    alert("FEL MADAFAKA!")
+                }
+            });
+
+        });
+        </script>
+        
+        
+        
+
     </div>
 }

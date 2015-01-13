@@ -81,6 +81,7 @@ namespace FedoRomance.Web.Controllers
             var info = ProfileRepository.GetProfile(username);
 
             var model = new ProfileModel();
+            model.Username = info.Username;
             model.Name = info.Name;
             model.Age = info.Age;
             model.Gender = info.Gender;
@@ -252,6 +253,28 @@ namespace FedoRomance.Web.Controllers
             return View();
         }
 
+        public ActionResult Post(string username)
+        {
+            if (User.Identity.IsAuthenticated == false)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
+            if (username == null)
+            {
+                username = User.Identity.Name;
+            }
+            
+            var info = ProfileRepository.GetProfile(username);
+            var model = new PostModel();
+            model.Message = "";
+            model.PostedBy = User.Identity.Name;
+            model.UserWall = info.Username;
+
+
+
+            return View(model);
+        }
         
 /*--------------------------language-------------------*/
         [HttpGet]

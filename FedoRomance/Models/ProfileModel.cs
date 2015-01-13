@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FedoRomance.Data;
 
 namespace FedoRomance.Web.Models
 {
@@ -17,12 +18,7 @@ namespace FedoRomance.Web.Models
         public string About { get; set; }
         public string Picture { get; set; }
 
-
-        public int PostId { get; set; }
-        public string Message { get; set; }
-        public string PostedBy { get; set; }
-        public string PostedDate { get; set; }
-        public string UserWall { get; set; }
+        public List<Post> Post { get; set; } 
 	}
 
 }
