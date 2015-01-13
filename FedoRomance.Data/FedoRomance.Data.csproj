@@ -84,6 +84,7 @@
     <Compile Include="Repositories\EditRepository.cs" />
     <Compile Include="Repositories\FriendsRepositories.cs" />
     <Compile Include="Repositories\IndexRepository.cs" />
+    <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repositories\ProfileRepository.cs" />
     <Compile Include="Repositories\RegisterRepository.cs" />
     <Compile Include="Repositories\SearchRepository.cs" />

@@ -20,7 +20,6 @@
           <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Message" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="PostedBy" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="PostedDate" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="UserWall" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
@@ -73,7 +72,6 @@ warning 6035: The relationship 'FK__Posts__UserWall__2F9A1060' has columns that 
           <Property Name="PostID" Type="Int32" Nullable="false" />
           <Property Name="Message" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PostedBy" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PostedDate" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UserWall" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
@@ -116,7 +114,6 @@ warning 6035: The relationship 'FK__Posts__UserWall__2F9A1060' has columns that 
                 <ScalarProperty Name="PostID" ColumnName="PostID" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
-                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
                 <ScalarProperty Name="UserWall" ColumnName="UserWall" />
               </MappingFragment>
             </EntityTypeMapping>
