@@ -14,6 +14,14 @@ namespace FedoRomance.Data
     
     public partial class User
     {
+        public User()
+        {
+            this.FriendRequests = new HashSet<FriendRequest>();
+            this.FriendRequests1 = new HashSet<FriendRequest>();
+            this.Friends = new HashSet<Friend>();
+            this.Friends1 = new HashSet<Friend>();
+        }
+    
         public int UID { get; set; }
         public string Username { get; set; }
         public string Name { get; set; }
@@ -23,5 +31,10 @@ namespace FedoRomance.Data
         public string Password { get; set; }
         public int Visible { get; set; }
         public string Picture { get; set; }
+    
+        public virtual ICollection<FriendRequest> FriendRequests { get; set; }
+        public virtual ICollection<FriendRequest> FriendRequests1 { get; set; }
+        public virtual ICollection<Friend> Friends { get; set; }
+        public virtual ICollection<Friend> Friends1 { get; set; }
     }
 }

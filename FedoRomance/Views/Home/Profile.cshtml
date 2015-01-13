@@ -37,30 +37,7 @@
 
 
 
-    <script type="text/javascript">
-        function PostMessage()
-        {
-            $("button").click(function() {
-                var message = $("#userWallTextBox").serializeArray();
-                $.ajax({
-                    type: "POST",
-                    url: 'api/HomeApiController/Post',
-                    data: JSON.stringify({
-                        Message: message,
-                        UserWall: User.
-                    }),
-                    contentType: 'application/json; charset=utf-8',
-                    cache: false,
-                    success: OnSuccess,
-                    failure: function(response) {
-                        alert(response.d);
-                    }
-                });
-            });
-        };
-
-
-    </script>
+    
 
 
 
