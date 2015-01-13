@@ -19,25 +19,25 @@
                 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    @Html.ActionLink(Language.EngProfile, "Profile", "Home", new { username = User.Identity.Name }, new { @class = "Action" })
+                    @Html.ActionLink(Language.Profile, "Profile", "Home", new { username = User.Identity.Name }, new { @class = "Action" })
                 }
                 else if (User.Identity.IsAuthenticated == false)
                 {
-                    @Html.ActionLink(Language.EngProfile, "Profile", "Home", null, new { @class = "Action" })
+                    @Html.ActionLink(Language.Profile, "Profile", "Home", null, new { @class = "Action" })
                 }
                 
 
-                @Html.ActionLink(Language.EngSearch, "Search", "Home", null, new { @class = "Action"})
-                @Html.ActionLink(Language.EngEdit, "Edit", "Home", null, new { @class = "Action"})
-                @Html.ActionLink(Language.EngFriends, "Friends", "Home", null, new { @class = "Action"})
+                @Html.ActionLink(Language.Search, "Search", "Home", null, new { @class = "Action"})
+                @Html.ActionLink(Language.Edit, "Edit", "Home", null, new { @class = "Action"})
+                @Html.ActionLink(Language.Friends, "Friends", "Home", null, new { @class = "Action"})
                 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    @Html.ActionLink(Language.EngLogOut, "LogOut","Home", null, new { @class = "Action", @onclick ="return confirmation()", id = "CONFIRM"})
+                    @Html.ActionLink(Language.LogOut, "LogOut","Home", null, new { @class = "Action", @onclick ="return confirmation()", id = "CONFIRM"})
                 }
                 else if (User.Identity.IsAuthenticated == false)
                 {
-                    @Html.ActionLink(Language.EngLogIn, "LogIn","Home", null, new { @class = "Action"})
+                    @Html.ActionLink(Language.LogIn, "LogIn","Home", null, new { @class = "Action"})
                 }
                 
             </div>

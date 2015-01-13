@@ -192,10 +192,10 @@
       <LastGenOutput>Language.Designer.cs</LastGenOutput>
       <CustomToolNamespace>sprak</CustomToolNamespace>
     </EmbeddedResource>
-    <Content Include="App_GlobalResources\Language.se.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+    <EmbeddedResource Include="App_GlobalResources\Language.se.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.se.designer.cs</LastGenOutput>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
