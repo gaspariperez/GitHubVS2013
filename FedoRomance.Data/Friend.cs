@@ -17,6 +17,5 @@ namespace FedoRomance.Data
         public int RelationID { get; set; }
         public string User1 { get; set; }
         public string User2 { get; set; }
-
     }
 }

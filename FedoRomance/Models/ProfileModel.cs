@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace FedoRomance.Web.Models
 {
+
     public class ProfileModel {
 
         public string Username { get; set; }
@@ -23,4 +24,5 @@ namespace FedoRomance.Web.Models
         public string PostedDate { get; set; }
         public string UserWall { get; set; }
 	}
+
 }
