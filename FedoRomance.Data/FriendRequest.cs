@@ -12,11 +12,11 @@ namespace FedoRomance.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Friend
+    public partial class FriendRequest
     {
-        public int RelationID { get; set; }
-        public Nullable<int> UID { get; set; }
-        public int FID { get; set; }
+        public int RequestId { get; set; }
+        public int FromUser { get; set; }
+        public int ToUser { get; set; }
     
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }

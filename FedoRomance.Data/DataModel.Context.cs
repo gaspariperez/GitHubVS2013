@@ -25,6 +25,7 @@ namespace FedoRomance.Data
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<FriendRequest> FriendRequests { get; set; }
         public virtual DbSet<Friend> Friends { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<User> Users { get; set; }

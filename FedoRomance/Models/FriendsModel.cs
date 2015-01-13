@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FedoRomance.Data;
 
 namespace FedoRomance.Web.Models {
     public class FriendsModel {
 
-        public string Username { get; set; }
+        public List<User> Contacts { get; set; }
     }
 }
