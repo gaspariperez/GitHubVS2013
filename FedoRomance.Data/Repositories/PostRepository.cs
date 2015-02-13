@@ -8,20 +8,34 @@ namespace FedoRomance.Data.Repositories
 {
     public class PostRepository
     {
-        public static void AddPost(string message, string postedBy, string userWall)
+        public static void AddPost(string message, int postedBy, int postedTo, string poster, string receiver)
         {
             using (var context = new DatabaseEntities())
             {
-                Post newPost = new Post
+                var newPost = new Post
                 {
                     Message = message,
                     PostedBy = postedBy,
-                    UserWall = userWall
+                    PostedTo = postedTo,
+                    Poster = poster,
+                    Receiver = receiver
                 };
-
                 context.Posts.Add(newPost);
-                context.SaveChanges();
+                context.SaveChanges();                
             }
         }
+
+        public static List<Post> GetPosts(string username)
+        {
+            using (var context = new DatabaseEntities())
+            {
+                var result = context.Posts
+                    .Where(x => x.Poster.Equals(username))
+                    .ToList();
+
+                return result;
+            }
+        } 
+
     }
 }

@@ -16,7 +16,12 @@ namespace FedoRomance.Data
     {
         public int PostID { get; set; }
         public string Message { get; set; }
-        public string PostedBy { get; set; }
-        public string UserWall { get; set; }
+        public int PostedBy { get; set; }
+        public int PostedTo { get; set; }
+        public string Poster { get; set; }
+        public string Receiver { get; set; }
+    
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

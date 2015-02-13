@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.WebPages;
-using FedoRomance.Data;
-using FedoRomance.Data.Repositories;
-using FedoRomance.Web.Api;
-using FedoRomance.Web.Models;
 using System.Web.Mvc;
 using System.Web.Security;
+using FedoRomance.Data;
+using FedoRomance.Data.Repositories;
+using FedoRomance.Web.Models;
 
 namespace FedoRomance.Web.Controllers
 {
@@ -66,29 +60,6 @@ namespace FedoRomance.Web.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
-        }
-
-        public ActionResult Profile(string username) {
-            if (User.Identity.IsAuthenticated == false) {
-                return RedirectToAction("LogIn", "Home");
-            }
-            
-            if (username == null)
-            {
-                username = User.Identity.Name;
-            }
-
-            var info = ProfileRepository.GetProfile(username);
-
-            var model = new ProfileModel();
-            model.Username = info.Username;
-            model.Name = info.Name;
-            model.Age = info.Age;
-            model.Gender = info.Gender;
-            model.About = info.About;
-            model.Picture = info.Picture;
-
-            return View(model);
         }
 
         public ActionResult Friends()
@@ -253,29 +224,30 @@ namespace FedoRomance.Web.Controllers
             return View();
         }
 
-        public ActionResult Post(string username)
-        {
-            if (User.Identity.IsAuthenticated == false)
-            {
+        public ActionResult Profile(string username) {
+            if (User.Identity.IsAuthenticated == false) {
                 return RedirectToAction("LogIn", "Home");
             }
 
-            if (username == null)
-            {
+            if (username == null) {
                 username = User.Identity.Name;
             }
-            
+
             var info = ProfileRepository.GetProfile(username);
-            var model = new PostModel();
-            model.Message = "";
-            model.PostedBy = User.Identity.Name;
-            model.UserWall = info.Username;
 
-
+            var model = new ProfileModel();
+            model.Username = info.Username;
+            model.Name = info.Name;
+            model.Age = info.Age;
+            model.Gender = info.Gender;
+            model.About = info.About;
+            model.Picture = info.Picture;
 
             return View(model);
         }
         
+
+
 /*--------------------------language-------------------*/
         [HttpGet]
         public ActionResult ChangeCulture(string lang)

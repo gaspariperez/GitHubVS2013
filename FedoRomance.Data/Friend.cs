@@ -16,7 +16,7 @@ namespace FedoRomance.Data
     {
         public int RelationID { get; set; }
         public Nullable<int> UID { get; set; }
-        public int FID { get; set; }
+        public Nullable<int> FID { get; set; }
     
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }

@@ -58,7 +58,7 @@ namespace FedoRomance.Data
 
                 foreach (var item in contactListForUser)
                 {
-                    contactList.Add(GetUser(item.FID));
+                    //contactList.Add(GetUser(item.FID));
                 }
 
                 return contactList;

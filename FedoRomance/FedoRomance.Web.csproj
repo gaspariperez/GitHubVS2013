@@ -126,7 +126,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\HomeApiController.cs" />
+    <Compile Include="Api\PostsController.cs" />
     <Compile Include="App_GlobalResources\Language.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -148,7 +148,7 @@
     <Compile Include="Models\LanguageModel.cs" />
     <Compile Include="Models\EditModel.cs" />
     <Compile Include="Models\IndexModel.cs" />
-    <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Api\ApiModels\PostModel.cs" />
     <Compile Include="Models\ProfileModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
@@ -166,7 +166,6 @@
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\EditPassword.cshtml" />
-    <Content Include="Views\Home\Post.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -176,9 +175,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
-    <Folder Include="Views\IndexModel\" />
-    <Folder Include="Views\PostModel\ProfileModel\" />
-    <Folder Include="Views\RegisterModel\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FedoRomance.Data\FedoRomance.Data.csproj">

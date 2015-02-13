@@ -25,11 +25,12 @@
           <Key>
             <PropertyRef Name="PostID" />
           </Key>
-          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Message" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="PostedBy" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="PostedDate" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="UserWall" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="PostedBy" Type="int" Nullable="false" />
+          <Property Name="PostedTo" Type="int" Nullable="false" />
+          <Property Name="Poster" Type="varchar" MaxLength="15" />
+          <Property Name="Receiver" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -93,12 +94,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__Posts__PostedBy__73852659' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__Posts__PostedBy__73852659" />-->
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK__Posts__UserWall__74794A92' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK__Posts__UserWall__74794A92" />-->
+        <Association Name="FK__Posts__PostedBy__3429BB53">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="PostedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Posts__PostedTo__351DDF8C">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="PostedTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DatabaseModelStoreContainer">
           <EntitySet Name="FriendRequests" EntityType="Self.FriendRequests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Friends" EntityType="Self.Friends" Schema="dbo" store:Type="Tables" />
@@ -119,6 +138,14 @@ warning 6035: The relationship 'FK__Posts__UserWall__74794A92' has columns that 
           <AssociationSet Name="FK__Friends__UID__54CB950F" Association="Self.FK__Friends__UID__54CB950F">
             <End Role="Users" EntitySet="Users" />
             <End Role="Friends" EntitySet="Friends" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Posts__PostedBy__3429BB53" Association="Self.FK__Posts__PostedBy__3429BB53">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Posts__PostedTo__351DDF8C" Association="Self.FK__Posts__PostedTo__351DDF8C">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Posts" EntitySet="Posts" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -145,6 +172,14 @@ warning 6035: The relationship 'FK__Posts__UserWall__74794A92' has columns that 
           <AssociationSet Name="FK__Friends__UID__54CB950F" Association="DatabaseModel.FK__Friends__UID__54CB950F">
             <End Role="User" EntitySet="Users" />
             <End Role="Friend" EntitySet="Friends" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Posts__PostedBy__1F2E9E6D" Association="DatabaseModel.FK__Posts__PostedBy__1F2E9E6D">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Posts__PostedTo__2022C2A6" Association="DatabaseModel.FK__Posts__PostedTo__2022C2A6">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Post" EntitySet="Posts" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="FriendRequest">
@@ -173,9 +208,12 @@ warning 6035: The relationship 'FK__Posts__UserWall__74794A92' has columns that 
           </Key>
           <Property Name="PostID" Type="Int32" Nullable="false" />
           <Property Name="Message" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="PostedBy" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="PostedDate" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="UserWall" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PostedBy" Type="Int32" Nullable="false" />
+          <Property Name="PostedTo" Type="Int32" Nullable="false" />
+          <Property Name="Poster" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="DatabaseModel.FK__Posts__PostedBy__1F2E9E6D" FromRole="Post" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="DatabaseModel.FK__Posts__PostedTo__2022C2A6" FromRole="Post" ToRole="User" />
+          <Property Name="Receiver" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -194,6 +232,8 @@ warning 6035: The relationship 'FK__Posts__UserWall__74794A92' has columns that 
           <NavigationProperty Name="FriendRequests1" Relationship="DatabaseModel.FK__FriendReq__ToUse__2F9A1060" FromRole="User" ToRole="FriendRequest" />
           <NavigationProperty Name="Friends" Relationship="DatabaseModel.FK__Friends__FID__55BFB948" FromRole="User" ToRole="Friend" />
           <NavigationProperty Name="Friends1" Relationship="DatabaseModel.FK__Friends__UID__54CB950F" FromRole="User" ToRole="Friend" />
+          <NavigationProperty Name="Posts" Relationship="DatabaseModel.FK__Posts__PostedBy__1F2E9E6D" FromRole="User" ToRole="Post" />
+          <NavigationProperty Name="Posts1" Relationship="DatabaseModel.FK__Posts__PostedTo__2022C2A6" FromRole="User" ToRole="Post" />
         </EntityType>
         <Association Name="FK__FriendReq__FromU__2EA5EC27">
           <End Type="DatabaseModel.User" Role="User" Multiplicity="1" />
@@ -243,6 +283,30 @@ warning 6035: The relationship 'FK__Posts__UserWall__74794A92' has columns that 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Posts__PostedBy__1F2E9E6D">
+          <End Type="DatabaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="DatabaseModel.Post" Role="Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="PostedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Posts__PostedTo__2022C2A6">
+          <End Type="DatabaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="DatabaseModel.Post" Role="Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="PostedTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -270,8 +334,9 @@ warning 6035: The relationship 'FK__Posts__UserWall__74794A92' has columns that 
           <EntitySetMapping Name="Posts">
             <EntityTypeMapping TypeName="DatabaseModel.Post">
               <MappingFragment StoreEntitySet="Posts">
-                <ScalarProperty Name="UserWall" ColumnName="UserWall" />
-                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+                <ScalarProperty Name="Poster" ColumnName="Poster" />
+                <ScalarProperty Name="PostedTo" ColumnName="PostedTo" />
                 <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="PostID" ColumnName="PostID" />

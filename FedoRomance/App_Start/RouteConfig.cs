@@ -15,12 +15,11 @@ namespace FedoRomance.Web
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
-
-              routes.MapRoute(
-            "Localization", // Route name
-            "{lang}/{controller}/{action}/{id}", // URL with parameters
-            new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
-        );
+            routes.MapRoute(
+                "Localization", // Route name
+                "{lang}/{controller}/{action}/{id}", // URL with parameters
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+            );
         }
     }
 }

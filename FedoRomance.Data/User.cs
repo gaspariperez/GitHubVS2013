@@ -20,6 +20,8 @@ namespace FedoRomance.Data
             this.FriendRequests1 = new HashSet<FriendRequest>();
             this.Friends = new HashSet<Friend>();
             this.Friends1 = new HashSet<Friend>();
+            this.Posts = new HashSet<Post>();
+            this.Posts1 = new HashSet<Post>();
         }
     
         public int UID { get; set; }
@@ -36,5 +38,7 @@ namespace FedoRomance.Data
         public virtual ICollection<FriendRequest> FriendRequests1 { get; set; }
         public virtual ICollection<Friend> Friends { get; set; }
         public virtual ICollection<Friend> Friends1 { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Post> Posts1 { get; set; }
     }
 }

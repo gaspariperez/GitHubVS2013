@@ -12,9 +12,9 @@ namespace FedoRomance.Web
     {
         protected void Application_Start()
         {
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            GlobalConfiguration.Configure(WebApiConfig.Register);
         }
 
         protected void Application_AcquireRequestState(object sender, EventArgs e)
