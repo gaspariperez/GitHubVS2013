@@ -17,12 +17,6 @@ namespace FedoRomance.Web.Models
         public string Gender { get; set; }
         public string About { get; set; }
         public string Picture { get; set; }
-
-
-
-        public string Message { get; set; }
-        public string Poster { get; set; }
-        public string Receiver { get; set; }
 	}
 
 }

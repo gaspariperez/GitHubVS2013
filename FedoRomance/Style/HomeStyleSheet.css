@@ -33,6 +33,11 @@
 
 /*------------------------PROFILE------------------------*/
 
+#profileInfoDiv {
+    max-width: 800px;
+    min-height: 300px;
+}
+
 .profilePicDiv {
     float: left;
     position: relative;
@@ -55,31 +60,33 @@
     padding-left: 20px;
 }
 
-#friendsDiv {
-    margin-left: auto;
-    margin-right: auto;
-    display: inline-block;
-}
-
-.randomFriendDiv {
-    background-size: 100px 100px;
-    width: 100px;
-    height: 100px;
-    margin: 10px;
-    float: left;
-}
-
-
 #profileWallDiv {
     display: inline-block;
+    float: left;
+    align-items: center;
 }
 
 
-.userWallTextBox {
+#postTextBox {
     max-width: 500px;
-    max-height: 150px;
+    max-height: 100px;
     width: 500px;
-    height: 150px;
+    height: 100px;
+}
+
+.singlePostDiv {
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+#profileNameHeader {
+    font-size: 25px;
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+#profileUsernameHeader {
+    font-weight: bold;
 }
 
 
