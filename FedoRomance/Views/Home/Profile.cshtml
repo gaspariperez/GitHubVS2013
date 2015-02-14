@@ -12,74 +12,81 @@
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 
     <div id="profileInfoDiv">
-        <div class="profilePicDiv">
-            <img src="@Url.Content("~/Images/" + Model.Picture)" class="profilePic" />
-        </div>
+            <div class="profilePicDiv">
+                <img src="@Url.Content("~/Images/" + Model.Picture)" class="profilePic"/>
+            </div>
+            <div id="profileInfo">
+                <p>
+                    <label id="profileNameHeader">@Html.DisplayTextFor(model => model.Name)</label>
+                    <label id="profileUsernameHeader">(@Html.DisplayTextFor(model => model.Username))</label>
+                </p>
+                <h3>Info</h3>
+                <p>
+                    Age: @Html.DisplayTextFor(model => model.Age)
+                </p>
+                <p>
+                    Gender: @Html.DisplayTextFor(model => model.Gender)
+                </p>
+                <p>
+                    About: @Html.DisplayTextFor(model => model.About)
+                </p>
+            </div>
+    </div>
         
-        <div id="profileInfo">
-            <p>
-                <h2>@Html.DisplayTextFor(model => model.Name)</h2>
-                @Html.DisplayTextFor(model => model.Username)
-            </p>
-            
-            <h3>Info</h3>
-            <p>
-                Age: @Html.DisplayTextFor(model => model.Age)
-            </p>
-            <p>
-                Gender: @Html.DisplayTextFor(model => model.Gender)
-            </p>
-            <p>
-                About: @Html.DisplayTextFor(model => model.About)
-            </p>
+
+    <div id="profileWallDiv">
+        <div>
+            <h3>Post on @Html.DisplayTextFor(model => model.Username)'s wall: </h3>
+            <textarea id="postTextBox" maxlength="150"></textarea>
+            <input type="button" id="postButton" value="Skicka!" onclick=" SendPost() "/>
+        </div>
+        <div>
+            <h3>@Html.DisplayTextFor(model => model.Username)'s wall:</h3>
+            <div id="postsDiv"></div>
         </div>
     </div>
-    
-    
-    <p>Post on @Html.DisplayTextFor(model => model.Username)'s wall: </p>
+}
 
-
-    
-    <p>Post something</p>
-    <form id="postMessage">
-        <textarea id="postTextBox" maxlength="150"></textarea>
-        <input type="submit" id="postButton" value="Skicka!" onclick="SendPost()"/>
-    </form>
-    
-
-
-
-    <div id="logg">
-    <ul id="lista"></ul>
-
-
-
-
-</div>
-
-
-
-    <script type="text/javascript">
-        function SendPost() {
+<script type="text/javascript">
+    function SendPost() {
+        if (!document.getElementById("postTextBox").value == "") {
             var post = {
                 Message: document.getElementById("postTextBox").value,
                 Poster: "@User.Identity.Name",
                 Receiver: "@Model.Username"
             };
-
             $.ajax({
                 type: "POST",
                 url: "/api/Posts/Post",
                 cache: false,
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(post),
-
-                success: function (data) {
-                    window.location.reload(true);
-
+                success: function () {
+                    window.location.reload();
                 }
             });
         }
-    </script>
+        else {
+            alert("Post cannot be empty!");
+        }
+    };
 
-}
+    window.onload = getPosts();
+    function getPosts() {
+        $.ajax({
+            type: "GET",
+            url: "/api/Posts/GetPosts?username=@Model.Username",
+            success: function(data) {
+                for (var i in data) {
+                    var post = data[i];
+                    var html = "<div class=\"singlePostDiv\"><p><b>From: </b>" + post.Poster + "</p>";
+                    html += "<p><b>Message: </b>" + post.Message + "</p></div>";
+
+                    $("#postsDiv").prepend(html);
+                }
+            }
+        });
+    };
+
+
+</script>

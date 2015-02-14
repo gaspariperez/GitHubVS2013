@@ -30,7 +30,7 @@ namespace FedoRomance.Data.Repositories
             using (var context = new DatabaseEntities())
             {
                 var result = context.Posts
-                    .Where(x => x.Poster.Equals(username))
+                    .Where(x => x.Receiver.Equals(username))
                     .ToList();
 
                 return result;

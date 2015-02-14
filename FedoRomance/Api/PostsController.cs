@@ -14,8 +14,7 @@ namespace FedoRomance.Web.Api
     {
 
         [HttpPost]
-        // POST api/<controller>
-        public void Post(ProfileModel post)
+        public void Post(PostModel post)
         {
             var poster = GetProfile(post.Poster);
             var reciever = GetProfile(post.Receiver);
@@ -32,11 +31,24 @@ namespace FedoRomance.Web.Api
             }
         }
 
+        [HttpGet]
+        public List<PostModel> GetPosts(string username)
+        {
+            var getPosts = PostRepository.GetPosts(username);
+            var postList = new List<PostModel>();
 
-
-
-
-
+            foreach (var item in getPosts)
+            {
+                var post = new PostModel
+                {
+                    Message = item.Message,
+                    Poster = item.Poster
+                };
+                postList.Add(post);
+            }
+            return postList;
+        }
+        
 
         // GET api/<controller>
         public IEnumerable<string> Get()
