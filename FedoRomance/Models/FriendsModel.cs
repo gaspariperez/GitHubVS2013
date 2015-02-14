@@ -7,6 +7,7 @@ using FedoRomance.Data;
 namespace FedoRomance.Web.Models {
     public class FriendsModel {
 
-        public List<User> Contacts { get; set; }
+        public Friend Friend { get; set; }
+        public List<Friend> FriendsList { get; set; }
     }
 }

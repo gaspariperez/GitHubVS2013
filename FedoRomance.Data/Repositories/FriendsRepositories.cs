@@ -1,132 +1,72 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FedoRomance.Data
+namespace FedoRomance.Data.Repositories 
+
 {
-    public class FriendsRepositories
+
+    public class FriendsRepositories 
+
     {
-        //public static List<FriendRequest> getFriendRequestsForUser(int id)
-        //{
-        //    using (var context = new DateSiteDBEntities())
-        //    {
-        //        var friendrequests = context.FriendRequests.Where(x => x.Receiver == id);
-        //        return friendrequests.ToList();
-        //    }
-        //}
 
+        // GET: /Friends List-Result by Users Id
 
-        //public static void AcceptFriendRequestForUser(int UserId, int FriendId)
-        //{
-        //    using (var context = new DateSiteDBEntities())
-        //    {
-        //        var friends = new ContactList
-        //        {
-        //            FriendID = FriendId,
-        //            UserID = UserId
-
-        //        };
-        //        var friends2 = new ContactList
-        //        {
-        //            FriendID = UserId,
-        //            UserID = FriendId
-        //        };
-        //        RemoveFriendRequest(UserId, FriendId, context);
-        //        context.ContactLists.Add(friends);
-        //        context.ContactLists.Add(friends2);
-        //        context.SaveChanges();
-        //    }
-        //}
-
-        public static User GetUser(int id) {
-            using (var context = new DatabaseEntities()) {
-
-                return context.Users.FirstOrDefault(x => x.UID == id);
-            }
-
-        }
-
-
-        public static List<User> getContactListForUser(int id)
+        public static List<Friend> GetFriends(int userId) 
         {
-            using (var context = new DatabaseEntities())
+            using (var context = new DatabaseEntities()) 
             {
-                var contactListForUser = context.Friends.Where(x => x.UID == id);
-                var contactList = new List<User>();
+                var result = context.Friends
+                    .Where(x => x.Accepted == true && (x.FID == userId || x.UID == userId))
+                    .Include(x => x.User)
+                    .Include(x => x.User1)
+                    .ToList();
 
-                foreach (var item in contactListForUser)
-                {
-                    //contactList.Add(GetUser(item.FID));
-                }
+                return result;
 
-                return contactList;
+            }
+        }
+
+        // SET: /Add new friend request
+        public static void AddFriend(Friend model) {
+            using (var context = new DatabaseEntities()) {
+                context.Friends.Add(model);
+                context.SaveChanges();
             }
 
         }
 
+        // UPDATE: /Confirm friend as friend
+        public static void UpdateFriendConfirmed(int id) {
+            using (var context = new DatabaseEntities()) {
+                Friend f = context.Friends
+                    .FirstOrDefault(x => x.RelationID == id);
 
-
-        //public static void SendFriendRequest(int receiverId, int senderId)
-        //{
-        //    using (var context = new DateSiteDBEntities())
-        //    {
-        //        var friendrequest = new FriendRequest
-        //        {
-        //            Sender = senderId,
-        //            Receiver = receiverId
-        //        };
-        //        context.FriendRequests.Add(friendrequest);
-        //        context.SaveChanges();
-        //    }
-        //}
-
-        //public static bool CheckIfAlreadyFriendsOrIfFriendRequestIsPending(int userId, int wallownerId)
-        //{
-        //    using (var context = new DateSiteDBEntities())
-        //    {
-        //        bool IsValid = false;
-        //        if (
-        //            context.FriendRequests.FirstOrDefault(x => x.Sender == userId && x.Receiver == wallownerId
-        //                                                       ||
-        //                                                       x.Sender == wallownerId && x.Receiver == userId) != null
-        //            )
-        //        {
-        //            return IsValid;
-        //        }
-        //        else if (context.ContactLists.FirstOrDefault(x => x.UserID == userId && x.FriendID == wallownerId) ==
-        //                 null)
-        //        {
-        //            IsValid = true;
-        //        }
-
-        //        return IsValid;
-
-        //    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                f.Accepted = true;
+                context.SaveChanges();
+            }
         }
+
+        // GET: /Get a list of requesting friends
+        public static List<Friend> CheckFriendsRequests(int userId) {
+
+            using (var context = new DatabaseEntities()) {
+                var result = context.Friends
+                    .Where(x => x.Accepted == false && x.FID == userId)
+                    .Include(x => x.User)
+                    .Include(x => x.User1)
+                    .ToList();
+
+                return result;
+
+            }
+        }
+
     }
+
+}

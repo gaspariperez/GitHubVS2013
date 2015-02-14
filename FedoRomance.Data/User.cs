@@ -16,8 +16,6 @@ namespace FedoRomance.Data
     {
         public User()
         {
-            this.FriendRequests = new HashSet<FriendRequest>();
-            this.FriendRequests1 = new HashSet<FriendRequest>();
             this.Friends = new HashSet<Friend>();
             this.Friends1 = new HashSet<Friend>();
             this.Posts = new HashSet<Post>();
@@ -34,8 +32,6 @@ namespace FedoRomance.Data
         public int Visible { get; set; }
         public string Picture { get; set; }
     
-        public virtual ICollection<FriendRequest> FriendRequests { get; set; }
-        public virtual ICollection<FriendRequest> FriendRequests1 { get; set; }
         public virtual ICollection<Friend> Friends { get; set; }
         public virtual ICollection<Friend> Friends1 { get; set; }
         public virtual ICollection<Post> Posts { get; set; }

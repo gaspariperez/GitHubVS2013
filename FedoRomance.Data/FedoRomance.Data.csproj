@@ -77,9 +77,6 @@
     <Compile Include="Friend.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="FriendRequest.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Post.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
