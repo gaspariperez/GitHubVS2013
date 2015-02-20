@@ -167,6 +167,7 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\EditPassword.cshtml" />
     <Content Include="Views\Shared\ErrorMessage.cshtml" />
+    <Content Include="Views\Home\FriendCount.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

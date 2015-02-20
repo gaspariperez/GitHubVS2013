@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -13,6 +14,22 @@ namespace FedoRomance.Web.Controllers
     
     public class HomeController : Controller
     {
+        
+        
+
+        [AllowAnonymous]
+        public ActionResult FriendCount(string username) {
+            
+
+                var profile = ProfileRepository.GetProfile(username);
+                var friendRequests = FriendsRepositories.GetPendingRequests(profile.UID);
+
+                ViewBag.FriendRequests = friendRequests;
+
+                return PartialView("FriendCount");
+            
+        }
+
         public ActionResult Index()
         {
             var getUser1 = IndexRepository.GetUsers("GasPer");
@@ -68,6 +85,16 @@ namespace FedoRomance.Web.Controllers
             if (User.Identity.IsAuthenticated == false) {
                 return RedirectToAction("LogIn", "Home");
             }
+
+            var userName = System.Web.HttpContext.Current.User.Identity.Name;
+            User myProfile = ProfileRepository.GetProfile(userName);
+
+            List<Friend> friendList = FriendsRepositories.GetFriends(myProfile.UID);
+            List<Friend> pendingList = FriendsRepositories.CheckFriendsRequests(myProfile.UID);
+            ViewBag.Friends = friendList;
+            ViewBag.CurrentUser = myProfile.Username;
+            ViewBag.Pending = pendingList;
+            
             return View();
         }
         
@@ -224,7 +251,7 @@ namespace FedoRomance.Web.Controllers
             
             return View();
         }
-
+        
         public ActionResult Profile(string username) {
             if (User.Identity.IsAuthenticated == false) {
                 return RedirectToAction("LogIn", "Home");
@@ -235,8 +262,10 @@ namespace FedoRomance.Web.Controllers
             }
 
             var info = ProfileRepository.GetProfile(username);
-
+            var loggedInUser = ProfileRepository.GetProfile(User.Identity.Name);
+            
             var model = new ProfileModel();
+            model.UID = info.UID;
             model.Username = info.Username;
             model.Name = info.Name;
             model.Age = info.Age;
@@ -244,89 +273,95 @@ namespace FedoRomance.Web.Controllers
             model.About = info.About;
             model.Picture = info.Picture;
 
+            Friend friendship = FriendsRepositories.GetFriendship(info.UID, loggedInUser.UID);
+
+            ViewBag.Friendship = friendship;
+            ViewBag.CurrentUser = loggedInUser.Username;
+            
             return View(model);
         }
 
  /*--------------------------FRIENDS-------------------*/
 
 
-        //
-        // GET: /Friends  Show Friends List/
-        //public ActionResult ShowFriends() {
-        //    try {
-        //        var userId = int.Parse(System.Web.HttpContext.Current.User.Identity.Name);
-        //        var result = FriendsRepositories.GetFriends(userId);
-        //        var model = new FriendsModel {
-        //            FriendsList = result
-        //        };
+       
+        
+        public ActionResult ShowFriends() {
+            try {
+                var userId = int.Parse(System.Web.HttpContext.Current.User.Identity.Name);
+                var result = FriendsRepositories.GetFriends(userId);
+                var model = new FriendsModel {
+                    FriendsList = result
+                };
 
-        //        ViewBag.UserId = userId;
-        //        return View(model);
-        //    }
-        //    catch (Exception e) {
-        //        return View("ErrorMessage", e);
-        //    }
-        //}
+                ViewBag.UserId = userId;
+                return RedirectToAction("Friends");
+            }
+            catch (Exception e) {
+                return View("ErrorMessage", e);
+            }
+        }
 
-        // GET: /Friends  Show Friends List/
-        //public ActionResult AddFriends(string friendId, string returnString) {
-        //    try {
-        //        var userId = int.Parse(System.Web.HttpContext.Current.User.Identity.Name);
+        
+        public ActionResult AddFriend(string friendName) {
+            try {
+                var userName = System.Web.HttpContext.Current.User.Identity.Name;
 
-        //        var model = new Friend();
+               var model = new Friend();
+               var myProfile = ProfileRepository.GetProfile(userName);
+               var friendProfile = ProfileRepository.GetProfile(friendName);
 
-        //        model.UID = userId;
-        //        model.FID = int.Parse(friendId);
-        //        model.Accepted = false;
+                model.UID = myProfile.UID;
+                model.FID = friendProfile.UID;
+                model.Accepted = false;
 
-        //        FriendsRepositories.AddFriend(model);
+               FriendsRepositories.AddFriend(model);
 
-        //        ViewBag.Message = "Test";
+               ViewBag.Message = "Test";
 
-        //        return RedirectToAction("SearchResult", "Search", new {
-        //            searchText = returnString
-        //        });
+               return RedirectToAction("Index");
+           
+       }
+        catch (Exception e)
+        {
+            ViewBag.Message = e.InnerException;
+                return View("ErrorMessage", e);
+            }
+        }
+        
+        public ActionResult AcceptFriend(string uid, string fid) {
 
-        //    }
-        //    catch (Exception e) {
-        //        ViewBag.Message = e;
-        //        return View("ErrorMessage");
-        //    }
-        //}
+            try {
+                var userid = int.Parse(uid);
+                var friendid = int.Parse(fid);
 
-        //// GET: /Friends  Show Friends List/
-        //public ActionResult AcceptFriend(string fid) {
+                FriendsRepositories.UpdateFriendConfirmed(userid, friendid);
 
-        //    try {
-        //        var id = int.Parse(fid);
+                return RedirectToAction("Friends");
+            }
+            catch (Exception e) {
+                ViewBag.Message = e;
+                return View("ErrorMessage");
+            }
+        }
 
-        //        FriendsRepositories.UpdateFriendConfirmed(id);
 
-        //        return RedirectToAction("ShowRequestingUsers", "Friends");
-        //    }
-        //    catch (Exception e) {
-        //        ViewBag.Message = e;
-        //        return View("ErrorMessage");
-        //    }
-        //}
+        public ActionResult ShowRequestingUsers() {
+            try {
+                var userId = int.Parse(System.Web.HttpContext.Current.User.Identity.Name);
+                var result = FriendsRepositories.CheckFriendsRequests(userId);
+                var model = new FriendsModel {
+                    FriendsList = result
+                };
 
-        // GET: /Friends  Show Friends List/
-        //public ActionResult ShowRequestingUsers() {
-        //    try {
-        //        var userId = int.Parse(System.Web.HttpContext.Current.User.Identity.Name);
-        //        var result = FriendsRepositories.CheckFriendsRequests(userId);
-        //        var model = new FriendsModel {
-        //            FriendsList = result
-        //        };
-
-        //        ViewBag.UserId = userId;
-        //        return View(model);
-        //    }
-        //    catch (Exception e) {
-        //        ViewBag.Message = e;
-        //        return View("ErrorMessage");
-        //    }
-        //}
+                ViewBag.UserId = userId;
+                return RedirectToAction("Friends");
+            }
+            catch (Exception e) {
+                ViewBag.Message = e;
+                return View("ErrorMessage");
+            }
+        }
         
 
 

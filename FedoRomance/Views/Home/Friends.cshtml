@@ -1,9 +1,48 @@
-﻿
+﻿@using FedoRomance.Data
+
 @{
     ViewBag.Title = "Friends";
 }
 
 <link href="/Style/HomeStyleSheet.css" rel="stylesheet" type="text/css" />
 
+<h2>Pending requests</h2>
+
+<div>
+
+    @foreach (var friend in ViewBag.Pending) {
+        <p>
+            @if (friend.User.Username == ViewBag.CurrentUser)
+            {
+
+                @Html.ActionLink((string) friend.User1.Username, "Profile", "Home", new {username = friend.User1.Username}, new { @class = "searchResults" })
+            }
+
+            else
+            {
+
+                @Html.ActionLink((string) friend.User.Username, "Profile", "Home", new {username = friend.User.Username}, new { @class = "searchResults" })
+            }
+        </p>
+    }
+
+</div>
+
+
 <h2>Friends</h2>
 
+<div>
+
+    @foreach (var friend in ViewBag.Friends) {
+        <p>
+            @if (friend.User.Username == ViewBag.CurrentUser) {
+
+                @Html.ActionLink((string)friend.User1.Username, "Profile", "Home", new { username = friend.User1.Username }, new { @class = "searchResults" })
+            }
+
+            else {@Html.ActionLink((string)friend.User.Username, "Profile", "Home", new { username = friend.User.Username }, new { @class = "searchResults" })
+            }
+        </p>
+    }
+
+</div>

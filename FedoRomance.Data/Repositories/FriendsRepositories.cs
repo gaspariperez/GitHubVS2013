@@ -15,7 +15,7 @@ namespace FedoRomance.Data.Repositories
 
     {
 
-        // GET: /Friends List-Result by Users Id
+      
 
         public static List<Friend> GetFriends(int userId) 
         {
@@ -32,7 +32,6 @@ namespace FedoRomance.Data.Repositories
             }
         }
 
-        // SET: /Add new friend request
         public static void AddFriend(Friend model) {
             using (var context = new DatabaseEntities()) {
                 context.Friends.Add(model);
@@ -41,23 +40,24 @@ namespace FedoRomance.Data.Repositories
 
         }
 
-        // UPDATE: /Confirm friend as friend
-        public static void UpdateFriendConfirmed(int id) {
+        
+        public static void UpdateFriendConfirmed(int uid, int fid) {
             using (var context = new DatabaseEntities()) {
                 Friend f = context.Friends
-                    .FirstOrDefault(x => x.RelationID == id);
+                    .FirstOrDefault(x => (x.FID == fid && x.UID == uid) || (x.UID == fid && x.FID == uid));
+
 
                 f.Accepted = true;
                 context.SaveChanges();
             }
         }
 
-        // GET: /Get a list of requesting friends
+
         public static List<Friend> CheckFriendsRequests(int userId) {
 
             using (var context = new DatabaseEntities()) {
                 var result = context.Friends
-                    .Where(x => x.Accepted == false && x.FID == userId)
+                    .Where(x => x.Accepted == false && (x.FID == userId || x.UID == userId))
                     .Include(x => x.User)
                     .Include(x => x.User1)
                     .ToList();
@@ -67,6 +67,26 @@ namespace FedoRomance.Data.Repositories
             }
         }
 
+        public static Friend GetFriendship(int uid, int fid) {
+            using (var context = new DatabaseEntities())
+            {
+                Friend f = context.Friends
+                    .FirstOrDefault(x => (x.FID == fid && x.UID == uid) || (x.UID == fid && x.FID == uid));
+
+                return f;
+            }
+        }
+
+        public static int GetPendingRequests(int uid)
+        {
+            using (var context = new DatabaseEntities())
+            {
+                int pendingFriends = context.Friends
+                    .Count(friend => friend.FID == uid && !friend.Accepted);
+
+                return pendingFriends;
+            }
+        }
     }
 
 }
