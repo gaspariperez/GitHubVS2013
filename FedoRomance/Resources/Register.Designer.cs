@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace sprak {
+namespace Register {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace sprak {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Language {
+    public class Register {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Language() {
+        internal Register() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace sprak {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FedoRomance.Web.App_GlobalResources.Language", typeof(Language).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FedoRomance.Web.Resources.Register", typeof(Register).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -106,11 +106,29 @@ namespace sprak {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PasswordMatch.
+        ///   Looks up a localized string similar to Confirm Password.
         /// </summary>
         public static string PasswordMatch {
             get {
                 return ResourceManager.GetString("PasswordMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I do not want to be searchable.
+        /// </summary>
+        public static string Searchable {
+            get {
+                return ResourceManager.GetString("Searchable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string string1234 {
+            get {
+                return ResourceManager.GetString("string1234", resourceCulture);
             }
         }
         

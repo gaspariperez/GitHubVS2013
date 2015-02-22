@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using sprak;
+using Register;
 
 namespace FedoRomance.Web.Models
 {
     public class LanguageModel
-    {
+    {/*
         [Display(Name = "Profile", ResourceType = typeof(Language))]
         [Required(ErrorMessageResourceType = typeof(Language))]
         public string Profile { get; set; }
@@ -31,7 +31,7 @@ namespace FedoRomance.Web.Models
 
         [Display(Name = "LogIn", ResourceType = typeof(Language))]
         [Required(ErrorMessageResourceType = typeof(Language))]
-        public string LogIn { get; set; }
+        public string LogIn { get; set; }*/
 
     }
 }

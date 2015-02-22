@@ -133,7 +133,13 @@
     <value>Password</value>
   </data>
   <data name="PasswordMatch" xml:space="preserve">
-    <value>PasswordMatch</value>
+    <value>Confirm Password</value>
+  </data>
+  <data name="Searchable" xml:space="preserve">
+    <value>I do not want to be searchable</value>
+  </data>
+  <data name="string1234" xml:space="preserve">
+    <value />
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>

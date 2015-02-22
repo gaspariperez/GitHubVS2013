@@ -4,35 +4,36 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using sprak;
+using Register;
+
 
 namespace FedoRomance.Web.Models
 {
     public class RegisterModel
     {
 
-        [Display(Name = "Name", ResourceType = typeof(Language))]
+        [Display(Name = "Name", ResourceType = typeof(Register.Register))]
         [Required(ErrorMessage = "Ange ett namn")]
         public string Name { get; set; }
 
-        [Display(Name = "Age" , ResourceType =  typeof(Language))]
+        [Display(Name = "Age" , ResourceType =  typeof(Register.Register))]
         public int Age { get; set; }
 
-        [Display(Name = "Gender", ResourceType = typeof(Language))]
+        [Display(Name = "Gender", ResourceType = typeof(Register.Register))]
         public string Gender { get; set; }
 
-        [Display(Name = "About", ResourceType =  typeof(Language))]
+        [Display(Name = "About", ResourceType =  typeof(Register.Register))]
         public string About { get; set; }
 
-        [Display(Name = "Username", ResourceType = typeof(Language))]
+        [Display(Name = "Username", ResourceType = typeof(Register.Register))]
         [Required(ErrorMessage = "Ange ett användarnamn")]
         public string Username { get; set; }
 
-        [Display(Name = "Password",ResourceType = typeof(Language))]
+        [Display(Name = "Password",ResourceType = typeof(Register.Register))]
         [Required(ErrorMessage = "Ange ett lösenord")]
         public string Password { get; set; }
 
-        [Display(Name = "PasswordMatch",ResourceType = typeof(Language))]
+        [Display(Name = "PasswordMatch",ResourceType = typeof(Register.Register))]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Matchar inte!")]
         public string PasswordMatch { get; set; }
 

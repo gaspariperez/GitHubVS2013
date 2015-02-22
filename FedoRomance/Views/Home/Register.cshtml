@@ -1,4 +1,4 @@
-﻿
+﻿@using Register
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,53 +6,62 @@
 
 <link href="/Style/HomeStyleSheet.css" rel="stylesheet" type="text/css" />
 
+
+@using System.Runtime.Versioning
 @model FedoRomance.Web.Models.RegisterModel
 @using (Html.BeginForm("Register")) {
     <div>
+        
         <div>
-                @Html.ActionLink("Svenska", "ChangeCulture", "Home", new { lang = "sv" }, null)
-                @Html.ActionLink("English", "ChangeCulture", "Home", new { lang = "en" }, null)
-          </div>
+            
+            @Html.ActionLink("Svenska", "ChangeCulture", "Home", new { lang = "sv" }, null)
+            @Html.ActionLink("English", "ChangeCulture", "Home", new { lang = "en" }, null)
+
+        </div>
         <p>
-            Name:
+            @Register.Name
+                       
             @Html.TextBoxFor(model => model.Name, new { @maxlength = 50 })
             @Html.ValidationMessageFor(model => model.Name)
         </p>
 
         <p>
-            Age:
+            @Register.Age
+            
             @Html.DropDownListFor(model => model.Age, (IEnumerable<SelectListItem>)ViewData["Age"])
         </p>
         
         <p>
-            Gender:
+            @Register.Gender 
+            
             @Html.DropDownListFor(model => model.Gender, (IEnumerable<SelectListItem>)ViewData["Gender"])
         </p>
         
-        <p>
-            About:
+        <p> 
+            @Register.About
+
             @Html.TextAreaFor(model => model.About, new {@class = "aboutTextBox", @maxlength = 150 })
         </p>
         
-        <p>
-            Username: 
+        <p> @Register.Username
+            
             @Html.TextBoxFor(model => model.Username, new { @maxlength = 15 })
             @Html.ValidationMessageFor(model => model.Username)
         </p>
         
-        <p>
-            Password:
+        <p> @Register.Password
+            
             @Html.PasswordFor(model => model.Password, new { @maxlength = 20 })
             @Html.ValidationMessageFor(model => model.Password)
         </p>
-        <p>
-            Confirm password:
+        <p> @Register.PasswordMatch
+            
             @Html.PasswordFor(model => model.PasswordMatch, new { @maxlength = 20 })
             @Html.ValidationMessageFor(model => model.PasswordMatch)
         </p>
 
         <p>
-            @Html.CheckBoxFor(model => model.BoolValue) Jag vill inte vara sökbar.
+            @Html.CheckBoxFor(model => model.BoolValue) @Register.Searchable
         </p>
 
         <p>

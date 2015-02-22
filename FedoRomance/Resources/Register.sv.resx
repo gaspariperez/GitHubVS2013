@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>Om</value>
+    <value>Beskrivning</value>
   </data>
   <data name="Age" xml:space="preserve">
     <value>Ålder</value>
@@ -133,9 +133,15 @@
     <value>Lösenord</value>
   </data>
   <data name="PasswordMatch" xml:space="preserve">
-    <value>Matcha lösenordet</value>
+    <value>Bekräfta Lösenord</value>
+  </data>
+  <data name="Searchable" xml:space="preserve">
+    <value>Jag vill inte vara sökbar</value>
+  </data>
+  <data name="string1234" xml:space="preserve">
+    <value />
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Användarnamn</value>
+    <value>Anvädarnamn</value>
   </data>
 </root>
