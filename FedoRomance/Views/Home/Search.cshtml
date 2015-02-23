@@ -13,6 +13,7 @@
         <p>
             <h2>Search</h2>
             @Html.TextBoxFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
             <input type="submit" value="Search" id="searchButton" />
         </p>
         
