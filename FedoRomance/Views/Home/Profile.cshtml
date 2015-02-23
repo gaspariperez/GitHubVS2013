@@ -27,7 +27,9 @@
                 About: @Html.DisplayTextFor(model => model.About)
             </p>
         </div>
-
+        
+        <!--Modifierar/döljer Action-knappen för aktuell profilsida beroende på situation
+            (om det är sin egen profil, redan är vän, inte är vän, har skickat förfrågan, har fått förfrågan)-->
         @if (ViewBag.CurrentUser != Model.Username)
         {
 
@@ -91,6 +93,7 @@
 }
 
 
+<!--Javascript för användarens wall-->
 
 <script type="text/javascript">
     function SendPost() {

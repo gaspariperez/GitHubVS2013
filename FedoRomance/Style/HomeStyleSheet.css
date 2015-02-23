@@ -109,6 +109,7 @@
 }
 
 .navbar-header {
+    color: white;
     background: blue;
     height: 32px;
     width: 800px;
