@@ -11,7 +11,7 @@ namespace FedoRomance.Web.Models
     public class EditModel
     {
         [Display(Name = "Namn")]
-        [Required(ErrorMessage = "Ange ett namn")]
+        [Required(ErrorMessage = "Enter a name")]
         public string Name { get; set; }
 
         public int Age { get; set; }

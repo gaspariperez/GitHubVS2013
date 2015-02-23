@@ -73,7 +73,7 @@ namespace FedoRomance.Web.Controllers
             else
             {
 
-                TempData["loginAlert"] = "<script>alert('Fel användarnamn eller lösenord!');</script>";
+                TempData["loginAlert"] = "<script>alert('Wrong username or password!');</script>";
                 FormsAuthentication.SignOut();
 
 
