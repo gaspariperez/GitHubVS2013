@@ -105,7 +105,7 @@ namespace FedoRomance.Web.Controllers
 
             string[] genderList =
             {
-                "Man", "Kvinna"
+                "Gentleman", "M'lady"
             };
 
             foreach (var x in genderList) {
@@ -354,7 +354,7 @@ namespace FedoRomance.Web.Controllers
 
                ViewBag.Message = "Test";
 
-               return RedirectToAction("Index");
+               return RedirectToAction("Friends");
            
        }
         

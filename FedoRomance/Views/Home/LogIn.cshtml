@@ -25,7 +25,7 @@
         @Html.ValidationMessageFor(x => x.Password)
 
         <br/>
-        <input type="submit" value="Logga in" id="SubmitBtn"/>
+        <input type="submit" value="Log in" id="SubmitBtn"/>
         @Html.Raw(TempData["loginAlert"])
         
         @Html.Raw(TempData["alertSuccessfulRegister"])
@@ -35,7 +35,7 @@
     
     
     <div>
-        <p>@Html.ActionLink("Inget konto än? Registrera här!", "Register", "Home")</p>
+        <p>@Html.ActionLink("Not a member yet? What are you waiting for?!", "Register", "Home")</p>
         
 
     </div>

@@ -4,11 +4,11 @@ namespace FedoRomance.Web.Models
 {
     public class LogInModel
     {
-        [Display(Name = "Användarnamn: ")]
+        [Display(Name = "Username: ")]
         [Required]
         public string Username { get; set; }
 
-        [Display(Name = "Lösenord: ")]
+        [Display(Name = "Password: ")]
         [Required]
         public string Password { get; set; }
 	}

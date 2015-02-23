@@ -32,7 +32,7 @@
         </p>
 
         <p>
-            @Html.CheckBoxFor(model => model.BoolValue) Jag vill inte vara sökbar.
+            @Html.CheckBoxFor(model => model.BoolValue) I don't want people stalking me.
         </p>
         
         <label for="file">Upload Image (.jpeg, .jpg or .png allowed):</label>
@@ -40,7 +40,7 @@
 
         
         <p>
-            <input type="submit" value="Spara ändringar" class="editButton"/>
+            <input type="submit" value="Save changes" class="editButton"/>
             @Html.Raw(TempData["alertSuccessfulEdit"])
             @Html.Raw(TempData["alertWrongPicFormat"])
         </p>
