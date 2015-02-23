@@ -16,7 +16,7 @@ namespace FedoRomance.Web.Controllers
     {
         
         
-
+        //Hämtar pending requests för användaren och visar i layout//
         [AllowAnonymous]
         public ActionResult FriendCount(string username) {
             
@@ -46,7 +46,12 @@ namespace FedoRomance.Web.Controllers
 
             return View(model);
         }
-               
+
+
+
+
+        /*--------------------------LOGIN/LOGOUT-------------------*/
+
         public ActionResult LogIn() {
             if (User.Identity.IsAuthenticated)
             {
@@ -54,6 +59,7 @@ namespace FedoRomance.Web.Controllers
             }
             return View();
         }
+
 
         [HttpPost] public ActionResult LogIn(LogInModel model)
         {
@@ -81,23 +87,10 @@ namespace FedoRomance.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Friends()
-        {
-            if (User.Identity.IsAuthenticated == false) {
-                return RedirectToAction("LogIn", "Home");
-            }
+        
 
-            var userName = System.Web.HttpContext.Current.User.Identity.Name;
-            User myProfile = ProfileRepository.GetProfile(userName);
 
-            List<Friend> friendList = FriendsRepositories.GetFriends(myProfile.UID);
-            List<Friend> pendingList = FriendsRepositories.CheckFriendsRequests(myProfile.UID);
-            ViewBag.Friends = friendList;
-            ViewBag.CurrentUser = myProfile.Username;
-            ViewBag.Pending = pendingList;
-            
-            return View();
-        }
+        /*--------------------------EDIT/REGISTER-------------------*/
         
         public void EditAndRegister() {
             var age = new List<SelectListItem>();
@@ -144,6 +137,7 @@ namespace FedoRomance.Web.Controllers
             return View(model);
         }
 
+
         [HttpPost] public ActionResult Edit(EditModel model, HttpPostedFileBase file)
         {
             if (User.Identity.IsAuthenticated == false) {
@@ -182,6 +176,8 @@ namespace FedoRomance.Web.Controllers
             return RedirectToAction("Profile", "Home", new { username = User.Identity.Name });
         }
 
+
+
         public ActionResult EditPassword()
         {
             if (User.Identity.IsAuthenticated == false) {
@@ -189,6 +185,8 @@ namespace FedoRomance.Web.Controllers
             }
             return View();
         }
+
+
 
         [HttpPost]
         public ActionResult EditPassword(EditModel model) 
@@ -224,6 +222,11 @@ namespace FedoRomance.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+
+
+
+
+        /*--------------------------SEARCH/PROFILE-------------------*/
 
         public ActionResult Search() {
             if (User.Identity.IsAuthenticated == false) {
@@ -285,27 +288,29 @@ namespace FedoRomance.Web.Controllers
  /*--------------------------FRIENDS-------------------*/
 
 
-       
-        
-        public ActionResult ShowFriends() {
-            try {
-                var userId = int.Parse(System.Web.HttpContext.Current.User.Identity.Name);
-                var result = FriendsRepositories.GetFriends(userId);
-                var model = new FriendsModel {
-                    FriendsList = result
-                };
+        //Friends and outgoing/incoming requests//
 
-                ViewBag.UserId = userId;
-                return RedirectToAction("Friends");
+        public ActionResult Friends() {
+            if (User.Identity.IsAuthenticated == false) {
+                return RedirectToAction("LogIn", "Home");
             }
-            catch (Exception e) {
-                return View("ErrorMessage", e);
-            }
+
+            var userName = System.Web.HttpContext.Current.User.Identity.Name;
+            User myProfile = ProfileRepository.GetProfile(userName);
+
+            List<Friend> friendList = FriendsRepositories.GetFriends(myProfile.UID);
+            List<Friend> pendingList = FriendsRepositories.CheckFriendsRequests(myProfile.UID);
+            ViewBag.Friends = friendList;
+            ViewBag.CurrentUser = myProfile.Username;
+            ViewBag.Pending = pendingList;
+
+            return View();
         }
+       
 
-        
+        //Send friend request to the current profile you are visiting//
         public ActionResult AddFriend(string friendName) {
-            try {
+            
                 var userName = System.Web.HttpContext.Current.User.Identity.Name;
 
                var model = new Friend();
@@ -323,32 +328,25 @@ namespace FedoRomance.Web.Controllers
                return RedirectToAction("Index");
            
        }
-        catch (Exception e)
-        {
-            ViewBag.Message = e.InnerException;
-                return View("ErrorMessage", e);
-            }
-        }
         
+
+        //Accept a friend request
         public ActionResult AcceptFriend(string uid, string fid) {
 
-            try {
+            
                 var userid = int.Parse(uid);
                 var friendid = int.Parse(fid);
 
                 FriendsRepositories.UpdateFriendConfirmed(userid, friendid);
 
                 return RedirectToAction("Friends");
-            }
-            catch (Exception e) {
-                ViewBag.Message = e;
-                return View("ErrorMessage");
-            }
+            
+            
         }
 
 
         public ActionResult ShowRequestingUsers() {
-            try {
+            
                 var userId = int.Parse(System.Web.HttpContext.Current.User.Identity.Name);
                 var result = FriendsRepositories.CheckFriendsRequests(userId);
                 var model = new FriendsModel {
@@ -357,12 +355,8 @@ namespace FedoRomance.Web.Controllers
 
                 ViewBag.UserId = userId;
                 return RedirectToAction("Friends");
-            }
-            catch (Exception e) {
-                ViewBag.Message = e;
-                return View("ErrorMessage");
-            }
-        }
+            
+          }
         
 
 

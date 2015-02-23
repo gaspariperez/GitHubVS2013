@@ -14,9 +14,7 @@ namespace FedoRomance.Data.Repositories
     public class FriendsRepositories 
 
     {
-
-      
-
+        //Hämtar en användares vänner//
         public static List<Friend> GetFriends(int userId) 
         {
             using (var context = new DatabaseEntities()) 
@@ -40,7 +38,7 @@ namespace FedoRomance.Data.Repositories
 
         }
 
-        
+        //Uppdaterar Friends.accepted till true för att bekräfta en vänskap
         public static void UpdateFriendConfirmed(int uid, int fid) {
             using (var context = new DatabaseEntities()) {
                 Friend f = context.Friends
@@ -67,6 +65,7 @@ namespace FedoRomance.Data.Repositories
             }
         }
 
+        //Hämtar relation mellan två användare//
         public static Friend GetFriendship(int uid, int fid) {
             using (var context = new DatabaseEntities())
             {
@@ -77,6 +76,8 @@ namespace FedoRomance.Data.Repositories
             }
         }
 
+
+        //Används till visningen i layout//
         public static int GetPendingRequests(int uid)
         {
             using (var context = new DatabaseEntities())
