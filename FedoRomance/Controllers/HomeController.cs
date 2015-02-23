@@ -66,9 +66,10 @@ namespace FedoRomance.Web.Controllers
             }
             else
             {
-                
-                /*ModelState.AddModelError("", "Login details are wrong.");*/
+
+                TempData["msg"] = "<script>alert('Fel användarnamn eller lösenord!');</script>";
                 FormsAuthentication.SignOut();
+
 
                 return View();
             }
