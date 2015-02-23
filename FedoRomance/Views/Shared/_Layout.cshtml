@@ -16,6 +16,8 @@
         <div class="container">
             <div class="navbar-header">
                 
+                <!--Visar en inloggad användares friend requests-->
+
                 @if (User.Identity.IsAuthenticated)
                 {
                         ChildActionExtensions.RenderAction(Html, "FriendCount", "Home", new {username = User.Identity.Name});
