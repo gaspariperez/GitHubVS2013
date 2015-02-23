@@ -67,7 +67,7 @@ namespace FedoRomance.Web.Controllers
             else
             {
 
-                TempData["msg"] = "<script>alert('Fel användarnamn eller lösenord!');</script>";
+                TempData["loginAlert"] = "<script>alert('Fel användarnamn eller lösenord!');</script>";
                 FormsAuthentication.SignOut();
 
 
@@ -151,23 +151,25 @@ namespace FedoRomance.Web.Controllers
             }
 
             EditAndRegister();
+            
             var currentUser = User.Identity.Name;
-            var info = EditRepository.GetUser(currentUser);
-
+            var info = EditRepository.GetUser(currentUser);           
+            
             if (file != null) {
                 var extension = Path.GetExtension(file.FileName);
-
                 if (extension == ".jpeg" || extension == ".jpg" || extension == ".png")
                 {
                     var picName = currentUser + extension;
                     var folder = Server.MapPath("~/Images");
                     var path = Path.Combine(folder, picName);
 
-                    if (info.Picture != null) {
+                    if (info.Picture != null)
+                    {
                         var currentPicName = info.Picture;
                         var currentPicPath = Path.Combine(folder, currentPicName);
 
-                        if (System.IO.File.Exists(currentPicPath)) {
+                        if (System.IO.File.Exists(currentPicPath))
+                        {
                             System.IO.File.Delete(currentPicPath);
                         }
                     }
@@ -175,11 +177,17 @@ namespace FedoRomance.Web.Controllers
                     model.Picture = picName;
                     EditRepository.UploadUserPic(currentUser, picName);
                 }
-            }
-            
-            EditRepository.EditUser(currentUser, model.Name, model.Age, model.Gender, model.About, model.Visible);
+                else
+                {
+                    TempData["alertWrongPicFormat"] = "<script>alert('Wrong picture format!');</script>";
+                    return View();
+                }
+            }            
+                EditRepository.EditUser(currentUser, model.Name, model.Age, model.Gender, model.About, model.Visible);
+                TempData["alertSuccessfulEdit"] = "<script>alert('Editing successful!');</script>";
+                return RedirectToAction("Profile", "Home", new { username = User.Identity.Name });
 
-            return RedirectToAction("Profile", "Home", new { username = User.Identity.Name });
+
         }
 
         public ActionResult EditPassword()
@@ -218,10 +226,20 @@ namespace FedoRomance.Web.Controllers
         [HttpPost] public ActionResult Register(RegisterModel model)
         {
             EditAndRegister();
-            
-            RegisterRepository.Register(model.Name, model.Age, model.Gender, model.About, model.Username, model.Password, model.Visible);
-
-            return RedirectToAction("Index", "Home");
+            if (ModelState.IsValid)
+            {      
+                if (RegisterRepository.UsernameCheck(model.Username) == false)
+                {
+                    RegisterRepository.Register(model.Name, model.Age, model.Gender, model.About, model.Username, model.Password, model.Visible);
+                    TempData["alertSuccessfulRegister"] = "<script>alert('Registration successful!');</script>";                    
+                }
+                else
+                {
+                    TempData["alertFailRegister"] = "<script>alert('Username already taken yo! :(');</script>";
+                    return View();
+                }
+            }
+            return RedirectToAction("LogIn", "Home");
         }
 
 

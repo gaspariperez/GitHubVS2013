@@ -29,11 +29,11 @@ namespace FedoRomance.Web.Models
         [Required(ErrorMessage = "Ange ett användarnamn")]
         public string Username { get; set; }
 
-        [Display(Name = "Password",ResourceType = typeof(Register.Register))]
+        [Display(Name = "Password", ResourceType = typeof(Register.Register))]
         [Required(ErrorMessage = "Ange ett lösenord")]
         public string Password { get; set; }
 
-        [Display(Name = "PasswordMatch",ResourceType = typeof(Register.Register))]
+        [Display(Name = "PasswordMatch", ResourceType = typeof(Register.Register))]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Matchar inte!")]
         public string PasswordMatch { get; set; }
 

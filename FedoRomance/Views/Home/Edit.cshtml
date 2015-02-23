@@ -5,7 +5,7 @@
 
 
 @model FedoRomance.Web.Models.EditModel
-@using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+@using (Html.BeginForm("Edit")) {
     <div>
         <p>
             Name:
@@ -46,5 +46,7 @@
         <p>@Html.ActionLink("Someone is hacking me, reset that password!", "EditPassword", "Home",  new { @class = "editPasswordLink" })</p>
         
     </div>
+
+    @Html.Raw(TempData["alertWrongPicFormat"])
 
 }

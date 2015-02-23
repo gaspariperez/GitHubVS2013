@@ -11,22 +11,33 @@ namespace FedoRomance.Data.Repositories
     public class RegisterRepository 
     {
         public static void Register(string name, int age, string gender, string about, string username, string password, int visible) {
-            using (var user = new DatabaseEntities())
+            using (var context = new DatabaseEntities())
             {
-                User newUser = new User
+                    User newUser = new User {
+                        Name = name,
+                        Age = age,
+                        Gender = gender,
+                        About = about,
+                        Username = username,
+                        Password = password,
+                        Visible = visible,
+                    };             
+                    context.Users.Add(newUser);
+                    context.SaveChanges();
+            }
+        }
+
+        public static bool UsernameCheck(string username)
+        {
+            using (var context = new DatabaseEntities())
+            {
+                var usernameCheck = context.Users.FirstOrDefault(x => x.Username.Equals(username));
+
+                if (usernameCheck == null)
                 {
-                    Name = name,
-                    Age = age,
-                    Gender = gender,
-                    About = about,
-                    Username = username,
-                    Password = password,
-                    Visible = visible,
-                };
-                
-                user.Users.Add(newUser);
-                user.SaveChanges();
-                
+                    return false;
+                }
+                return true;
             }
         }
     }

@@ -65,6 +65,9 @@
 
         <p>
             <input type="submit" value="Registrera!" id="registerButton"/>
+
+            @Html.Raw(TempData["alertFailRegister"])
+
         </p>
 
     </div>
