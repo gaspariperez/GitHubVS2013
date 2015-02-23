@@ -5,7 +5,7 @@
 
 
 @model FedoRomance.Web.Models.EditModel
-@using (Html.BeginForm("Edit")) {
+@using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { enctype = "multipart/form-data" })) {
     <div>
         <p>
             Name:
@@ -35,18 +35,18 @@
             @Html.CheckBoxFor(model => model.BoolValue) Jag vill inte vara sökbar.
         </p>
         
-        <label for="file">Upload Image:</label>
-        <input type="file" name="file" id="file" />
+        <label for="file">Upload Image (.jpeg, .jpg or .png allowed):</label>
+        <input type="file" name="file" id="file"/>
+
         
         <p>
-            <input type="submit" value="Spara ändringar" class="editButton" />
+            <input type="submit" value="Spara ändringar" class="editButton"/>
+            @Html.Raw(TempData["alertSuccessfulEdit"])
+            @Html.Raw(TempData["alertWrongPicFormat"])
         </p>
-        
         
         <p>@Html.ActionLink("Someone is hacking me, reset that password!", "EditPassword", "Home",  new { @class = "editPasswordLink" })</p>
         
     </div>
-
-    @Html.Raw(TempData["alertWrongPicFormat"])
 
 }

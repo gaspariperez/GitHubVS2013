@@ -20,17 +20,6 @@ namespace FedoRomance.Web.Models
 
         public string About { get; set; }
 
-        [Display(Name = "Nuvarande lösenord")]
-        [Required(ErrorMessage = "Ange ditt nuvarande lösenord")]
-        public string CurrentPassword { get; set; }
-
-        [Display(Name = "Nytt lösenord")]
-        [Required(ErrorMessage = "Ange ett nytt lösenord")]
-        public string NewPassword { get; set; }
-        [Display(Name = "Nya lösernordet igen")]
-        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessage = "Matchar inte!")]
-        public string NewPasswordMatch { get; set; }
-
         public int Visible { get; set; }
 
         public bool BoolValue {

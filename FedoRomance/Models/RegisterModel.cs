@@ -13,7 +13,7 @@ namespace FedoRomance.Web.Models
     {
 
         [Display(Name = "Name", ResourceType = typeof(Register.Register))]
-        [Required(ErrorMessage = "Ange ett namn")]
+        [Required(ErrorMessage = "Enter your name")]
         public string Name { get; set; }
 
         [Display(Name = "Age" , ResourceType =  typeof(Register.Register))]
@@ -26,15 +26,16 @@ namespace FedoRomance.Web.Models
         public string About { get; set; }
 
         [Display(Name = "Username", ResourceType = typeof(Register.Register))]
-        [Required(ErrorMessage = "Ange ett användarnamn")]
+        [Required(ErrorMessage = "Enter a username")]
         public string Username { get; set; }
 
         [Display(Name = "Password", ResourceType = typeof(Register.Register))]
-        [Required(ErrorMessage = "Ange ett lösenord")]
+        [Required(ErrorMessage = "Enter a password")]
         public string Password { get; set; }
 
         [Display(Name = "PasswordMatch", ResourceType = typeof(Register.Register))]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Matchar inte!")]
+        [Required(ErrorMessage = "Enter the password again")]
+        [System.Web.Mvc.Compare("Password", ErrorMessage = "Passwords don't match!")]
         public string PasswordMatch { get; set; }
 
         public int Visible { get; set; }

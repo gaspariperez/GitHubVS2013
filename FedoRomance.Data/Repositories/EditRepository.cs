@@ -47,14 +47,23 @@ namespace FedoRomance.Data.Repositories {
         {
             using (var context = new DatabaseEntities()) {
                 var user = context.Users.FirstOrDefault(x => x.Username == userToUpdate);
-
-                if (currentPassword == user.Password && newPassword != null)
-                {
+                if (currentPassword == user.Password && newPassword != null) {
                     user.Password = newPassword;
                     context.SaveChanges();
                 }
             }
-        }
+        }
 
+        public static bool PasswordCheck(string username, string password)
+        {
+            using (var context = new DatabaseEntities())
+            {
+                var user = context.Users.FirstOrDefault(x => x.Username == username);
+                if (password == user.Password) {
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 }

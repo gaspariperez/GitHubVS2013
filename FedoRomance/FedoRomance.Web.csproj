@@ -134,6 +134,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LangPage.cs" />
+    <Compile Include="Models\EditPasswordModel.cs" />
     <Compile Include="Models\FriendsModel.cs" />
     <Compile Include="Models\LanguageModel.cs" />
     <Compile Include="Models\EditModel.cs" />
@@ -177,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
+    <Folder Include="Views\EditPasswordModel\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FedoRomance.Data\FedoRomance.Data.csproj">
