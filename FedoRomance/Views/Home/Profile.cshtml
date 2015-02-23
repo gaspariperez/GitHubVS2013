@@ -3,12 +3,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="/Style/HomeStyleSheet.css" rel="stylesheet" type="text/css" />
 @model FedoRomance.Web.Models.ProfileModel
 
-@using (Html.BeginForm("Profile")) {
-
-    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+@using (Html.BeginForm("Profile")) {   
 
     <div id="profileInfoDiv">
         <div class="profilePicDiv">
