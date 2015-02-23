@@ -269,7 +269,7 @@ namespace FedoRomance.Web.Controllers
             if (User.Identity.IsAuthenticated == false) {
                 return RedirectToAction("LogIn", "Home");
             }
-            var search = SearchRepository.Search(model.Name);
+            var search = SearchRepository.Search(model.SearchValue);
             var result = new List<string>();
 
             foreach (User item in search)
